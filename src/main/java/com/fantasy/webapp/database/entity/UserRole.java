@@ -20,4 +20,7 @@ public class UserRole {
 
     @Column(name = "role_name")
     private String roleName;
+
+    // TODO! Whenever security is implemented, we need to onetomany userroles and users. Or maybe
+    // TODO! refer more closely to the in-class example. I don't think Eric had to do that.
 }

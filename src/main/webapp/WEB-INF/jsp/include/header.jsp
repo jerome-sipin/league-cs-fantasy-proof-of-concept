@@ -27,20 +27,37 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <!-- TODO!!!! CHANGE HREF TO ACTUAL LINKS!!!! ALL OF THESE ARE CUSTOMER/CREATE BECAUSE THIS
+                         TODO!!!! IS COPY PASTED FROM CLASSWORK EXAMPLE-->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index">Index</a>
+                        <a class="nav-link active" aria-current="page" href="/index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/search">Customer Search</a>
+                        <a class="nav-link" href="/customer/search">Create Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/search">Employee Search</a>
+                        <a class="nav-link" href="/employee/search">Edit Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/create">Create Customer</a>
+                        <a class="nav-link" href="/customer/search">Leaderboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/create">Create Employee</a>
+                        <a class="nav-link" href="/customer/create">Search Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee/create">Search Players</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee/create">Search Fantasy Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee/create">Search Real Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/search">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/search">Sign Up</a>
                     </li>
                 </ul>
             </div>

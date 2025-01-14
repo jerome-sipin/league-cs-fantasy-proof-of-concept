@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FantasyPlayerDAO extends JpaRepository<FantasyPlayer, Long> {
 
-    FantasyPlayer findPlayerById(Integer id);
+    FantasyPlayer findPlayerById(Integer playerId);
 
-    FantasyPlayer findFantasyTeamById(Integer id);
+    FantasyPlayer findFantasyTeamById(Integer fantasyTeamId);
 
 }
