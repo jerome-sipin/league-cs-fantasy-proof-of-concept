@@ -11,7 +11,7 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
 
     FantasyTeam findById(Integer id);
 
-    FantasyTeam findByName(String name);
+    FantasyTeam findByTeamName(String teamName);
 
     @Query(value = "select  * from teams_fantasy order by points desc", nativeQuery = true)
     List<Map<String,Object>> sortTeamsByPoints();

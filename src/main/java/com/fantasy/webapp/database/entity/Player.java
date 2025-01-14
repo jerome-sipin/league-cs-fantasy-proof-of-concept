@@ -20,7 +20,7 @@ public class Player {
     @Column(name = "id")
     private Integer id;
 
-    @OneToMany(mappedBy = "players_fantasy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<FantasyPlayer> teams; // fantasy teams that this player is in
 

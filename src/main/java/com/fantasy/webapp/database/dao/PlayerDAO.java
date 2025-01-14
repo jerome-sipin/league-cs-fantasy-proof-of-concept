@@ -11,7 +11,7 @@ public interface PlayerDAO extends JpaRepository<Player, Long> {
 
     Player findById(Integer id);
 
-    Player findByName(String name);
+    Player findByPlayerName(String playerName);
 
     @Query(value = "select  * from players order by points desc", nativeQuery = true)
     List<Map<String,Object>> sortPlayersByScore();

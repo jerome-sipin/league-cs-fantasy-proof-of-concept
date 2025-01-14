@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RealTeamDAO extends JpaRepository<RealTeam, Long> {
 
-    RealTeam findByName(String name);
+    RealTeam findByTeamName(String teamName);
 
     RealTeam findById(Integer id);
 
