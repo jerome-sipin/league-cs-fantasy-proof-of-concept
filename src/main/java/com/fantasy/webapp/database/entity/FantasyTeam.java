@@ -3,9 +3,12 @@ package com.fantasy.webapp.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +19,10 @@ public class FantasyTeam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @OneToMany(mappedBy = "players_fantasy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<FantasyPlayer> players; // players that are in this fantasy team
 
     @Column(name = "user_id")
     private Integer userId;
