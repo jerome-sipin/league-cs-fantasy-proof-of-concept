@@ -42,7 +42,7 @@
                         <a class="nav-link" href="/customer/search">Leaderboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/create">Search Users</a>
+                        <a class="nav-link" href="/user/search">Search Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/employee/create">Search Players</a>

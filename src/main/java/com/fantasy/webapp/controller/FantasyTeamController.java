@@ -30,6 +30,8 @@ public class FantasyTeamController {
 
     // TODO! How to make it such that "User" shows up as the username,
     // TODO! and not the user id?
+    // TODO! maybe just use a native query here so we can join with the user table and get the username from there?
+    // TODO!  also make it such this query searches for "LIKE", not exact.
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
@@ -42,20 +44,24 @@ public class FantasyTeamController {
             List<FantasyTeam> team = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
             response.addObject("teamsKey", team);
         }
+        // TODO - remove this line
         System.out.println(response);
         return response;
     }
 
 
-
     // TODO implement these methods
     // TODO Following two methods generate the form to create a team and submit the team respectively.
+    // This method will make the query to get real team names, the players that play for these teams, and their cost
+    // I feel like the 1,000,000 budget should be implemented with Javascript. If too time consuming to implement,
+    // then we can save this for a later time after this has been completed for class.
     @GetMapping("/fantasy_team/create")
     public ModelAndView createFantasyTeam(){
         ModelAndView response = new ModelAndView();
         return response;
     }
 
+    // This method takes the inputted data and appends the new team to the database.
     @PostMapping("/fantasy_team/createTeam")
     public ModelAndView createTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
