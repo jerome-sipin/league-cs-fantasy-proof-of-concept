@@ -3,11 +3,16 @@ package com.fantasy.webapp.controller;
 import com.fantasy.webapp.database.dao.FantasyPlayerDAO;
 import com.fantasy.webapp.database.dao.FantasyTeamDAO;
 import com.fantasy.webapp.database.entity.FantasyTeam;
+import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,5 +45,22 @@ public class FantasyTeamController {
         System.out.println(response);
         return response;
     }
+
+
+
+    // TODO implement these methods
+    // TODO Following two methods generate the form to create a team and submit the team respectively.
+    @GetMapping("/fantasy_team/create")
+    public ModelAndView createFantasyTeam(){
+        ModelAndView response = new ModelAndView();
+        return response;
+    }
+
+    @PostMapping("/fantasy_team/createTeam")
+    public ModelAndView createTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult) throws Exception{
+        ModelAndView response = new ModelAndView();
+        return response;
+    }
+
 
 }
