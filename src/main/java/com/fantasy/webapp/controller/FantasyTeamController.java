@@ -23,17 +23,21 @@ public class FantasyTeamController {
     @Autowired
     FantasyPlayerDAO fantasyPlayerDAO;
 
+    // TODO! How to make it such that "User" shows up as the username,
+    // TODO! and not the user id?
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
 
         response.setViewName("fantasy_team/search");
 
-        if (teamName != null){
-            List<FantasyTeam> teams = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
-            response.addObject("teamsKey", teams);
-        }
+        response.addObject("search", teamName);
 
+        if (teamName != null){
+            List<FantasyTeam> team = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
+            response.addObject("teamsKey", team);
+        }
+        System.out.println(response);
         return response;
     }
 
