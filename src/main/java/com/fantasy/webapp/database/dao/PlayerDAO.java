@@ -9,9 +9,9 @@ import java.util.Map;
 
 public interface PlayerDAO extends JpaRepository<Player, Long> {
 
-    Player findById(Integer id);
+    List<Player> findById(Integer id);
 
-    Player findByPlayerName(String playerName);
+    List<Player> findByPlayerNameContainingIgnoreCase(String playerName);
 
     @Query(value = "select  * from players order by points desc", nativeQuery = true)
     List<Map<String,Object>> sortPlayersByScore();

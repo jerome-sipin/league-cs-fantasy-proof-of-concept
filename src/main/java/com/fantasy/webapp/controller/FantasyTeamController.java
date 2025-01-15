@@ -2,7 +2,9 @@ package com.fantasy.webapp.controller;
 
 import com.fantasy.webapp.database.dao.FantasyPlayerDAO;
 import com.fantasy.webapp.database.dao.FantasyTeamDAO;
+import com.fantasy.webapp.database.dao.UserDAO;
 import com.fantasy.webapp.database.entity.FantasyTeam;
+import com.fantasy.webapp.database.entity.User;
 import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -27,11 +29,14 @@ public class FantasyTeamController {
 
     @Autowired
     FantasyPlayerDAO fantasyPlayerDAO;
+    @Autowired
+    private UserDAO userDAO;
 
     // TODO! How to make it such that "User" shows up as the username,
     // TODO! and not the user id?
     // TODO! maybe just use a native query here so we can join with the user table and get the username from there?
     // TODO!  also make it such this query searches for "LIKE", not exact.
+    // TODO! OR!!!! Or maybe do it as a separate query and then add it to the model??? Would that work???
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
@@ -42,10 +47,14 @@ public class FantasyTeamController {
 
         if (teamName != null){
             List<FantasyTeam> team = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
+            // Get userid from above list, then query db for said user
+            // TODO! Again, ask Eric. Is this secure???
+            for (FantasyTeam t : team){
+                User user = userDAO.findById(t.getUserId());
+                response.addObject("usersKey", user);
+            }
             response.addObject("teamsKey", team);
         }
-        // TODO - remove this line
-        System.out.println(response);
         return response;
     }
 
