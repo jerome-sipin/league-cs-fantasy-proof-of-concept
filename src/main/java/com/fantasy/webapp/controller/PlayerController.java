@@ -42,7 +42,7 @@ public class PlayerController {
             }
             response.addObject("playersKey", players);
         }
-        System.out.println(response);
+        // TODO - Remove this System.out.println(response);
         return response;
     }
 
