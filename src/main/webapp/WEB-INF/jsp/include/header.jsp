@@ -45,7 +45,7 @@
                         <a class="nav-link" href="/user/search">Search Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/create">Search Players</a>
+                        <a class="nav-link" href="/player/search">Search Players</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/fantasy_team/search">Search Fantasy Teams</a>

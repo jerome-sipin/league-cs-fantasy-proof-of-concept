@@ -27,8 +27,8 @@ public class Player {
     @Column(name = "player_name")
     private String playerName;
 
-    @Column(name = "team_actual")
-    private Integer teamActual;
+    @Column(name = "team_actual_id")
+    private Integer teamActualId;
 
     @Column(name = "points")
     private Integer points;

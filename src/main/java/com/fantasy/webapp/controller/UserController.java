@@ -24,6 +24,7 @@ public class UserController {
 
         response.setViewName("user/search");
 
+        // TODO - Note for future me. that second parameter MUST BE NAMED THE SAME THING ON THE JSP!!!!
         response.addObject("search", username);
 
         // TODO - IMPORTANT
@@ -34,6 +35,7 @@ public class UserController {
             List<User> users = userDAO.findByUsernameContainingIgnoreCase(username);
             response.addObject("usersKey", users);
         }
+        System.out.println(response);
         return response;
     }
 }

@@ -1,7 +1,9 @@
 package com.fantasy.webapp.controller;
 
 import com.fantasy.webapp.database.dao.PlayerDAO;
+import com.fantasy.webapp.database.dao.RealTeamDAO;
 import com.fantasy.webapp.database.entity.Player;
+import com.fantasy.webapp.database.entity.RealTeam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,12 @@ public class PlayerController {
     @Autowired
     private PlayerDAO playerDAO;
 
+    @Autowired
+    private RealTeamDAO realTeamDAO;
 
     // TODO - Is there a way to have a default search result? That would be a good use case for the
     // TODO - sortPlayersByCost method in the DAO.
+    // TODO - ??? why is it returning search = null???
     @GetMapping("/player/search")
     public ModelAndView search(@RequestParam(required = false) String playerName) {
         ModelAndView response = new ModelAndView();
@@ -31,10 +36,16 @@ public class PlayerController {
 
         if (playerName != null) {
             List<Player> players = playerDAO.findByPlayerNameContainingIgnoreCase(playerName);
-            response.addObject("players", players);
+            for (Player p : players) {
+                RealTeam team = realTeamDAO.findById(p.getTeamActualId());
+                response.addObject("teamsKey", team);
+            }
+            response.addObject("playersKey", players);
         }
         System.out.println(response);
         return response;
     }
+
+
 
 }
