@@ -10,7 +10,6 @@ public class SignupFormBean {
 
     // TODO - In-class examples have @EmailUnique, which we created during Spring Security
     // TODO - Add this in later for unique email/username.
-
     @NotEmpty(message = "Email is required")
     private String email;
 

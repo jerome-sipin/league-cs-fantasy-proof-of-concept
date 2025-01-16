@@ -30,7 +30,7 @@ public class RealTeamController {
 
         response.setViewName("real_team/search");
 
-        response.addObject("teamName", teamName);
+        response.addObject("search", teamName);
 
         if(teamName != null ){
             List<RealTeam> teams = realTeamDAO.findByTeamNameContainingIgnoreCase(teamName);
@@ -40,7 +40,6 @@ public class RealTeamController {
             }
             response.addObject("teamsKey", teams);
         }
-        System.out.println(response);
         return response;
     }
 }

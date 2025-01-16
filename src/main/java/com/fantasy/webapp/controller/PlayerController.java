@@ -24,8 +24,12 @@ public class PlayerController {
     private RealTeamDAO realTeamDAO;
 
     // TODO - Is there a way to have a default search result? That would be a good use case for the
-    // TODO - sortPlayersByCost method in the DAO.
-    // TODO - ??? why is it returning search = null???
+    // TODO - sortPlayersByCost method in the DAO. Like, I want to see a table of all players
+    //  below the search bar before the user has even typed anything in.
+    //  this could probably be done just by removing the JSTL if statement.
+    //  ??? why is it returning search = null???
+    // Note - The second parameter in .addObject() MUST match the id and names of the form search box in the jsp
+    // That's why it was returning null.
     @GetMapping("/player/search")
     public ModelAndView search(@RequestParam(required = false) String playerName) {
         ModelAndView response = new ModelAndView();
@@ -42,7 +46,8 @@ public class PlayerController {
             }
             response.addObject("playersKey", players);
         }
-        // TODO - Remove this System.out.println(response);
+        // TODO - Remove this
+        System.out.println(response);
         return response;
     }
 

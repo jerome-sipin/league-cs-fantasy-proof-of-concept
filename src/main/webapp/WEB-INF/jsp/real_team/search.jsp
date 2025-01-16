@@ -4,7 +4,7 @@
 
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
-        <h1 class="text-center">Search for Real</h1>
+        <h1 class="text-center">Search for Real Teams</h1>
     </div>
 </section>
 
@@ -47,10 +47,6 @@
                         <td>${team.teamName}</td>
                     </c:forEach>
                     <c:forEach var="player" items="${playersKey}">
-                        <td>${player.playerName}</td>
-                        <td>${player.playerName}</td>
-                        <td>${player.playerName}</td>
-                        <td>${player.playerName}</td>
                         <td>${player.playerName}</td>
                     </c:forEach>
                 </tr>

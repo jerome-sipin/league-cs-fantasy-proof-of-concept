@@ -61,6 +61,7 @@ public class FantasyTeamController {
 
     // TODO implement these methods
     // TODO Following two methods generate the form to create a team and submit the team respectively.
+    // TODO Also, gate these two options behind being logged in once security is implemented.
     // This method will make the query to get real team names, the players that play for these teams, and their cost
     // I feel like the 1,000,000 budget should be implemented with Javascript. If too time consuming to implement,
     // then we can save this for a later time after this has been completed for class.
