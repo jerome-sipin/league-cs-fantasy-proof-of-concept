@@ -39,7 +39,7 @@
                         <a class="nav-link" href="/employee/search">Edit Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/search">Leaderboard</a>
+                        <a class="nav-link" href="/leaderboard">Leaderboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/search">Search Users</a>

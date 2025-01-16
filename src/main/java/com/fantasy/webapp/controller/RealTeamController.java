@@ -23,10 +23,13 @@ public class RealTeamController {
     @Autowired
     private PlayerDAO playerDAO;
 
+    // TODO - maybe this doesn't even have to  be a search page? Does it still cont as
+    // TODO - dynamic if it just shows a table of teams that are populated through the backend?
+    // TODO - even though the database is kind of dynamic?
+    // TODO - this is a good question for Eric.
     @GetMapping("/real_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
-
 
         response.setViewName("real_team/search");
 
@@ -40,6 +43,8 @@ public class RealTeamController {
             }
             response.addObject("teamsKey", teams);
         }
+        // TODO - How do I do this with SL4J, again???
+        System.out.println(response);
         return response;
     }
 }

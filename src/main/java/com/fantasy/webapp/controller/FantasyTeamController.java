@@ -37,6 +37,7 @@ public class FantasyTeamController {
     // TODO! maybe just use a native query here so we can join with the user table and get the username from there?
     // TODO!  also make it such this query searches for "LIKE", not exact.
     // TODO! OR!!!! Or maybe do it as a separate query and then add it to the model??? Would that work???
+    // TODO! Also, consider changing the DAO method to something like findByTeamNameContainingIgnoreCase
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
@@ -59,12 +60,32 @@ public class FantasyTeamController {
     }
 
 
+
+    // TODO - shows user a user-made fantasy team
+    @GetMapping("/fantasy_team/view")
+    public ModelAndView viewFantasyTeam(){
+        ModelAndView response = new ModelAndView();
+        return response;
+    }
+
     // TODO implement these methods
     // TODO Following two methods generate the form to create a team and submit the team respectively.
     // TODO Also, gate these two options behind being logged in once security is implemented.
     // This method will make the query to get real team names, the players that play for these teams, and their cost
-    // I feel like the 1,000,000 budget should be implemented with Javascript. If too time consuming to implement,
+    // I feel like the $1,000,000 budget should be implemented with Javascript. If too time consuming to implement,
     // then we can save this for a later time after this has been completed for class.
+    //
+    // Don't forget that you can have a max of 2 players from the same team in a fantasy team. That logic
+    // could be a part of this controller method. Get the list of players from the form bean. Call the playerDAO
+    // and find each player's original team, and append them to a list. If there are three or more identical team ids
+    // in this list, then the team is invalid.
+    //
+    // Notice how in HLTV fantasy, when there are players you cannot select (too many players from a certain team
+    // or not enough money), they are greyed out. I think that would probably be something done with Javascript.
+    //
+    // Start this by just having basic tables with one row being blank (placeholder for pictures), one row being
+    // player name, and one row being their price/select button. Then mirror these choices to a table at the top that
+    // has the player picture, and their name.
     @GetMapping("/fantasy_team/create")
     public ModelAndView createFantasyTeam(){
         ModelAndView response = new ModelAndView();
@@ -77,6 +98,7 @@ public class FantasyTeamController {
         ModelAndView response = new ModelAndView();
         return response;
     }
+
 
 
 }

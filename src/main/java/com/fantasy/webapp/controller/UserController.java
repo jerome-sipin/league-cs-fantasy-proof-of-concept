@@ -35,7 +35,7 @@ public class UserController {
             List<User> users = userDAO.findByUsernameContainingIgnoreCase(username);
             response.addObject("usersKey", users);
         }
-        System.out.println(response);
+        //System.out.println(response);
         return response;
     }
 }
