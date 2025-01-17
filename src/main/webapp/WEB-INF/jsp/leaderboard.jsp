@@ -41,9 +41,9 @@
 
 <!-- If top players button clicked... show top players -->
 
-<section class="bg-light2 pt-5 pb-5 justify-content-center">
+<section class="bg-light2 pb-5 justify-content-center">
     <div class="container" id="topPlayersDiv">
-        <div class="row pt-5 pb-5 justify-content-center">
+        <div class="row pb-5 justify-content-center">
             <div class="col-6">
                 <table class="table mt-5">
                     <tr>
@@ -66,9 +66,9 @@
     </div>
 </section>
 
-<section class="bg-light2 pt-5 pb-5 justify-content-center">
+<section class="bg-light2 pb-5 justify-content-center">
     <div class="container" id="topTeamsDiv">
-        <div class="row pt-5 pb-5 justify-content-center">
+        <div class="row pb-5 justify-content-center">
             <div class="col-6">
                 <table class="table mt-5">
                     <tr>
@@ -82,7 +82,7 @@
                             <td>${usersKey.get(status.index).username}</td>
                             <td>${team.teamName}</td>
                             <td>${team.points}</td>
-                            <td>${View}</td>
+                            <td>View</td>
                         </tr>
                     </c:forEach>
                 </table>

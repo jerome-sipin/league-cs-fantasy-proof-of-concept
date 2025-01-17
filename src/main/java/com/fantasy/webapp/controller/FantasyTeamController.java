@@ -3,7 +3,9 @@ package com.fantasy.webapp.controller;
 import com.fantasy.webapp.database.dao.FantasyPlayerDAO;
 import com.fantasy.webapp.database.dao.FantasyTeamDAO;
 import com.fantasy.webapp.database.dao.UserDAO;
+import com.fantasy.webapp.database.entity.FantasyPlayer;
 import com.fantasy.webapp.database.entity.FantasyTeam;
+import com.fantasy.webapp.database.entity.Player;
 import com.fantasy.webapp.database.entity.User;
 import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
 import jakarta.validation.Valid;
@@ -12,12 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -29,6 +29,7 @@ public class FantasyTeamController {
 
     @Autowired
     FantasyPlayerDAO fantasyPlayerDAO;
+
     @Autowired
     private UserDAO userDAO;
 
@@ -49,7 +50,6 @@ public class FantasyTeamController {
         if (teamName != null){
             List<FantasyTeam> team = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
             // Get userid from above list, then query db for said user
-            // TODO! Again, ask Eric. Is this secure???
             for (FantasyTeam t : team){
                 User user = userDAO.findById(t.getUserId());
                 response.addObject("usersKey", user);
@@ -62,9 +62,25 @@ public class FantasyTeamController {
 
 
     // TODO - shows user a user-made fantasy team
-    @GetMapping("/fantasy_team/view")
-    public ModelAndView viewFantasyTeam(){
+    @GetMapping("/fantasy_team/view/{fantasyTeamId}")
+    public ModelAndView viewFantasyTeam(@PathVariable Integer fantasyTeamId){
         ModelAndView response = new ModelAndView();
+
+        response.setViewName("fantasy_team/view");
+
+        List<FantasyPlayer> teamRoster = fantasyPlayerDAO.findPlayersByFantasyTeamId(fantasyTeamId);
+        FantasyTeam teamInformation = fantasyTeamDAO.findById(fantasyTeamId);
+
+        List<Player> playerInformation = new ArrayList<>();
+        for (FantasyPlayer x : teamRoster){
+            playerInformation.add(x.getPlayer());
+        }
+
+        response.addObject("teamInformationKey", teamInformation);
+        response.addObject("playersKey", playerInformation);
+
+        log.debug(response.toString());
+
         return response;
     }
 

@@ -13,6 +13,6 @@ public interface FantasyPlayerDAO extends JpaRepository<FantasyPlayer, Long> {
     FantasyPlayer findFantasyTeamById(Integer fantasyTeamId);
 
     // TODO!
-    //List<FantasyPlayer> findPlayersByTeamId
+    List<FantasyPlayer> findPlayersByFantasyTeamId(Integer teamId);
 
 }

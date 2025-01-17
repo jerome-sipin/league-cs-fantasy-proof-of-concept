@@ -45,7 +45,7 @@
                         <td>${usersKey.username}</td>
                         <td>${team.teamName}</td>
                         <td>${team.points}</td>
-                        <td><a href="/fantasy_team/view/${fantasy_team.id}" >View</a></td>
+                        <td><a href="/fantasy_team/view/${team.id}" >View</a></td>
                     </tr>
                 </c:forEach>
             </table>
