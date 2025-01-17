@@ -2,6 +2,15 @@
 
 <jsp:include page="include/header.jsp"/>
 
+<style>
+    #topPlayersDiv {
+        display: none;
+    }
+    #topTeamsDiv {
+        display: none;
+    }
+</style>
+
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
         <h1 class="text-center">Leaderboard</h1>
@@ -13,19 +22,14 @@
     <div class="container">
         <div class="row pt-5 pb-5 justify-content-center">
             <div class="col-6">
-<%--                <div><button type="button" class="btn btn-primary btn-lg">View Top Players</button></div>--%>
-<%--                <br>--%>
-<%--                <div><button type="button" class="btn btn-primary btn-lg">View Top Fantasy Teams</button></div>--%>
-
                 <div class="row justify-content-center">
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary btn-lg">View Top Players</button>
+                        <button type="button" class="btn btn-primary btn-lg" id="topPlayers" name="topPlayers">View Top Players</button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary btn-lg">View Top Fantasy Teams</button>
+                        <button type="button" class="btn btn-primary btn-lg" id="topTeams" name="topTeams">View Top Fantasy Teams</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -35,6 +39,74 @@
     TODO   When one of these buttons is pressed, the other is deactivated (this is important).
     TODO   Then, show the data for the selected button below. --%>
 
+<!-- If top players button clicked... show top players -->
+
+<section class="bg-light2 pt-5 pb-5 justify-content-center">
+    <div class="container" id="topPlayersDiv">
+        <div class="row pt-5 pb-5 justify-content-center">
+            <div class="col-6">
+                <table class="table mt-5">
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Team</th>
+                        <th>Cost</th>
+                        <th>Points</th>
+                    </tr>
+                    <c:forEach var="player" items="${playersKey}" varStatus="status">
+                        <tr>
+                            <td>${player.playerName}</td>
+                            <td>${realTeamsKey.get(status.index).teamName}</td>
+                            <td>${player.cost}</td>
+                            <td>${player.points}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light2 pt-5 pb-5 justify-content-center">
+    <div class="container" id="topTeamsDiv">
+        <div class="row pt-5 pb-5 justify-content-center">
+            <div class="col-6">
+                <table class="table mt-5">
+                    <tr>
+                        <th>User</th>
+                        <th>Team Name</th>
+                        <th>Points</th>
+                        <th></th>
+                    </tr>
+                    <c:forEach var="team" items="${teamsKey}" varStatus="status">
+                        <tr>
+                            <td>${usersKey.get(status.index).username}</td>
+                            <td>${team.teamName}</td>
+                            <td>${team.points}</td>
+                            <td>${View}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- If top teams button clicked... show top teams -->
+<script>
+
+    $("#topPlayers").on('click', function(){
+        console.log("This button has been clicked");
+        $("#topPlayersDiv").show();
+        $("#topTeamsDiv").hide();
+    });
+
+    $("#topTeams").on('click', function(){
+        console.log("This button has been clicked");
+        $("#topPlayersDiv").hide();
+        $("#topTeamsDiv").show();
+    });
+
+</script>
 
 
 <jsp:include page="include/footer.jsp"/>

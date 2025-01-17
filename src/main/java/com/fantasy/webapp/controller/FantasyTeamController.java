@@ -89,7 +89,13 @@ public class FantasyTeamController {
     @GetMapping("/fantasy_team/create")
     public ModelAndView createFantasyTeam(){
         ModelAndView response = new ModelAndView();
-        // chheck if team belongs to user
+
+        // first order of business - run query to retrieve all real teams, their players, and the cost of said players
+
+       // String field = response.getParameter("leaderboardButton");
+
+
+        // one step that should be taken - check if team belongs to user
 
         return response;
 
