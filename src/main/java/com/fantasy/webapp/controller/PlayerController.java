@@ -47,7 +47,8 @@ public class PlayerController {
             response.addObject("playersKey", players);
         }
         // TODO - Remove this
-        System.out.println(response);
+        //System.out.println(response);
+        log.debug(response.toString());
         return response;
     }
 

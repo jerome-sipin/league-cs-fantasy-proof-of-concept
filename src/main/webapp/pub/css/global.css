@@ -14,3 +14,10 @@
 .bg-footer {
     background-color: #F8F9FA;
 }
+
+.flex-parent {
+    display: flex;
+}
+.jc-center {
+    justify-content: center;
+}

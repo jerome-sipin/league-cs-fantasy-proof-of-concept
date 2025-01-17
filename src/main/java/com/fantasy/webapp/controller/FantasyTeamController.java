@@ -89,7 +89,10 @@ public class FantasyTeamController {
     @GetMapping("/fantasy_team/create")
     public ModelAndView createFantasyTeam(){
         ModelAndView response = new ModelAndView();
+        // chheck if team belongs to user
+
         return response;
+
     }
 
     // This method takes the inputted data and appends the new team to the database.

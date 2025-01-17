@@ -22,16 +22,23 @@ public class LeaderboardController {
 
         response.setViewName("/leaderboard");
 
+
+
         return response;
     }
 
     // TODO - There are two buttons. Clicking on either will lead you to the corresponding view.
+    // I'm pretty sure the in-class example of create customer has a view change.
 
     @GetMapping("/leaderboard/players")
     public ModelAndView topPlayers() {
         ModelAndView response = new ModelAndView();
 
         response.setViewName("/leaderboard/players");
+
+        // add object called "playersSelected".
+
+        // if playersSelected = true...
 
         return response;
     }
@@ -41,6 +48,10 @@ public class LeaderboardController {
         ModelAndView response = new ModelAndView();
 
         response.setViewName("/leaderboard/teams");
+
+        // add object called "teamsSelected".
+
+        // if teamsSelected = true...
 
         return response;
 

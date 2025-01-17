@@ -3,14 +3,18 @@ package com.fantasy.webapp.database.dao;
 import com.fantasy.webapp.database.entity.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+@SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayerDAOTest {
 
-    // TODO - @Autowired annotation is invalid???
-    // TODO - why is the DAO blanked out??????
+    @Autowired
     private PlayerDAO playerDAO;
 
     @Test
