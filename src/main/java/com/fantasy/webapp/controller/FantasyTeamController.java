@@ -1,12 +1,7 @@
 package com.fantasy.webapp.controller;
 
-import com.fantasy.webapp.database.dao.FantasyPlayerDAO;
-import com.fantasy.webapp.database.dao.FantasyTeamDAO;
-import com.fantasy.webapp.database.dao.UserDAO;
-import com.fantasy.webapp.database.entity.FantasyPlayer;
-import com.fantasy.webapp.database.entity.FantasyTeam;
-import com.fantasy.webapp.database.entity.Player;
-import com.fantasy.webapp.database.entity.User;
+import com.fantasy.webapp.database.dao.*;
+import com.fantasy.webapp.database.entity.*;
 import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +23,15 @@ public class FantasyTeamController {
     private FantasyTeamDAO fantasyTeamDAO;
 
     @Autowired
-    FantasyPlayerDAO fantasyPlayerDAO;
+    private FantasyPlayerDAO fantasyPlayerDAO;
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private RealTeamDAO realTeamDAO;
+    @Autowired
+    private PlayerDAO playerDAO;
 
     // TODO! How to make it such that "User" shows up as the username,
     // TODO! and not the user id?
@@ -102,26 +102,46 @@ public class FantasyTeamController {
     // Start this by just having basic tables with one row being blank (placeholder for pictures), one row being
     // player name, and one row being their price/select button. Then mirror these choices to a table at the top that
     // has the player picture, and their name.
+    // TODO - there needs to be some sort of authorization here. If the user already has a team, do not show
+    // TODO - them the create button.
     @GetMapping("/fantasy_team/create")
-    public ModelAndView createFantasyTeam(){
+    public ModelAndView createFantasyTeam() {
         ModelAndView response = new ModelAndView();
 
-        // first order of business - run query to retrieve all real teams, their players, and the cost of said players
+        response.setViewName("fantasy_team/create");
 
-       // String field = response.getParameter("leaderboardButton");
+        // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
+        List<RealTeam> realTeams = realTeamDAO.findAllTeams();
+        // List<Player> players = playerDAO.findAllPlayers();
 
+        List<Player> players = new ArrayList<>();
+        for (RealTeam rt : realTeams){
+            List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
+            players.addAll(roster);
+        }
 
-        // one step that should be taken - check if team belongs to user
+        response.addObject("realTeamsKey", realTeams);
+        response.addObject("playersKey", players);
 
+//        log.debug(realTeams.toString());
+//        log.debug(players.toString());
         return response;
 
     }
+
+
+    // TODO - one step that should be taken - check if team belongs to user
 
     // This method takes the inputted data and appends the new team to the database.
     @PostMapping("/fantasy_team/createTeam")
     public ModelAndView createTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
         return response;
+
+        // listen to submit button. On submit, retrieve what is in the top-most table.
+        // We need to have some way to track what  is in that top-most table that represents the user's team
+        // how will that be done?
+        // refer more to customer/create in examples.
     }
 
 

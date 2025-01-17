@@ -33,7 +33,7 @@
                         <a class="nav-link active" aria-current="page" href="/index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/search">Create Team</a>
+                        <a class="nav-link" href="/fantasy_team/create">Create Team</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/employee/search">Edit Team</a>

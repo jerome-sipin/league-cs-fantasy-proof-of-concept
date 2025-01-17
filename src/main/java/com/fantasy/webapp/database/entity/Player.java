@@ -24,6 +24,8 @@ public class Player {
     @ToString.Exclude
     private List<FantasyPlayer> teams; // fantasy teams that this player is in
 
+
+
     @Column(name = "player_name")
     private String playerName;
 

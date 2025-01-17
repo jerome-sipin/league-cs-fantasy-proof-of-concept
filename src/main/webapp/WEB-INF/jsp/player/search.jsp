@@ -40,6 +40,7 @@
                     <th>Cost</th>
                     <th>Points</th>
                 </tr>
+                <%-- TODO - add  row  for player images. Copy what was done for fantasy_team/view--%>
                 <c:forEach var="player" items="${playersKey}">
                     <tr>
                         <td>${player.playerName}</td>
