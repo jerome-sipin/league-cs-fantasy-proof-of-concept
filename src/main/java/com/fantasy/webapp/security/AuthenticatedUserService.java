@@ -51,7 +51,7 @@ public class AuthenticatedUserService {
     public User loadCurrentUser() {
         String username = getCurrentUsername();
         if (username != null) {
-            return userDao.findByEmailIgnoreCase(username);
+            return userDao.findByUsernameIgnoreCase(username);
         }
         return null;
     }

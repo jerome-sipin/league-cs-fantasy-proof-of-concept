@@ -10,7 +10,7 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     User findById(Integer id);
 
-    User findByEmailIgnoreCase(String email);
+    User findByUsernameIgnoreCase(String username);
 
     @Query("select u from User u where u.username = :username")
     List<User> findByUsername(String username);

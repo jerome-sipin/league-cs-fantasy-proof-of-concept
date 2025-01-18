@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // first we load the user from the database
-        User user = userDao.findByEmailIgnoreCase(username);
+        User user = userDao.findByUsernameIgnoreCase(username);
 
         // if the user was not found then we get out of here immediately because its a bad login
         if (user == null) {
@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean accountNonLocked = true;
 
         // load the user roles from our database
-        List<UserRole> userRoles = userRoleDao.findAllRoles();
+        List<UserRole> userRoles = userRoleDao.findUserRolesById(user.getId());
 
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
@@ -70,7 +70,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
             authorities.add(authority);
         }
-
+        System.out.println(authorities);
         return authorities;
     }
 }

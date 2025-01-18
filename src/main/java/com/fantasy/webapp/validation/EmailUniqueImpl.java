@@ -32,7 +32,7 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
             return true;
         }
 
-        User user = userService.findByEmailIgnoreCase(value);
+        User user = userService.findByUsernameIgnoreCase(value);
 
         return (user == null);
     }

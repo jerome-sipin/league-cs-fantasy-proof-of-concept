@@ -12,7 +12,7 @@ public class IndexController {
     @GetMapping("/index")
     public ModelAndView index(){
         ModelAndView response = new ModelAndView();
-        response.setViewName("/index");
+        response.setViewName("index");
         return response;
     }
 }
