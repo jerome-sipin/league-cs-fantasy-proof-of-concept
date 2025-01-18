@@ -14,7 +14,6 @@ public interface RealTeamDAO extends JpaRepository<RealTeam, Long> {
 
     List<RealTeam> findTeamNamesById(Integer id);
 
-    // @Query("select u from User u where u.username = :username")
     @Query("select rt from RealTeam  rt")
     List<RealTeam> findAllTeams();
 
