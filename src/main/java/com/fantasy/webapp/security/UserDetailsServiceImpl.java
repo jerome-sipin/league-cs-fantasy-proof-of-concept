@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean accountNonLocked = true;
 
         // load the user roles from our database
-        List<UserRole> userRoles = userRoleDao.findUserRolesById(user.getId());
+        List<UserRole> userRoles = userRoleDao.findUserRolesByUserId(user.getId());
 
         // convert our user roles into spring granted authorities
         List<GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
@@ -70,7 +70,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
             authorities.add(authority);
         }
-        System.out.println(authorities);
+        log.debug("Authorities : " + authorities);
         return authorities;
     }
 }
