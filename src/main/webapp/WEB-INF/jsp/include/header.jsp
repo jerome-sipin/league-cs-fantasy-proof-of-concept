@@ -37,10 +37,10 @@
                         <a class="nav-link" href="/fantasy_team/create">Create Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/search">Edit Team</a>
+                        <a class="nav-link" href="/fantasy_team/edit">Edit Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/leaderboard">Leaderboard</a>
+                        <a class="nav-link" href="/leaderboard/view">Leaderboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/user/search">Search Users</a>
@@ -56,7 +56,10 @@
                     </li>
                     <sec:authorize access="hasAnyAuthority('Admin')">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Admin Only</a>
+                            <a class="nav-link" href="/">Create Real Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Create Player</a>
                         </li>
                     </sec:authorize>
                     <sec:authorize access="!isAuthenticated()">

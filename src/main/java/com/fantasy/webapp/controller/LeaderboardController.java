@@ -39,11 +39,11 @@ public class LeaderboardController {
     @Autowired
     private UserDAO userDAO;
 
-    @GetMapping("/leaderboard")
+    @GetMapping("/leaderboard/view")
     public ModelAndView leaderboard() {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("/leaderboard");
+        response.setViewName("/leaderboard/view");
 
         List<FantasyTeam> teams = fantasyTeamDAO.sortFantasyTeamsByPoints();
         List<Player> players = playerDAO.sortPlayersByScore();
@@ -51,9 +51,9 @@ public class LeaderboardController {
         response.addObject("playersKey", players);
 
         // Important!!!
-        // https://stackoverflow.com/questions/4142631/is-it-possible-to-iterate-two-items-simultaneously-using-foreach-in-jstl
+        // stackoverflow.com/questions/4142631/is-it-possible-to-iterate-two-items-simultaneously-using-foreach-in-jstl
         // JSTL did not want to recognize realTeamsKey as something I could do .teamName on. Refer to
-        // leaderboard.jsp and look at the varStatus="status" in the result table.
+        // view.jsp and look at the varStatus="status" in the result table.
         List<RealTeam> realTeams = new ArrayList<>();
         for (Player player : players) {
             RealTeam playerActualTeam = realTeamDAO.findById(player.getTeamActualId());
@@ -67,9 +67,7 @@ public class LeaderboardController {
         }
 
         response.addObject("realTeamsKey", realTeams);
-
         response.addObject("usersKey", users);
-
         response.addObject("teamsKey", teams);
 
         log.debug(response.toString());
@@ -77,34 +75,5 @@ public class LeaderboardController {
         return response;
     }
 
-    // TODO - There are two buttons. Clicking on either will lead you to the corresponding view.
-    // I'm pretty sure the in-class example of create customer has a view change.
-
-    @GetMapping("/leaderboard/players")
-    public ModelAndView topPlayers() {
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("/leaderboard/players");
-
-        // add object called "playersSelected".
-
-        // if playersSelected = true...
-
-        return response;
-    }
-
-    @GetMapping("/leaderboard/teams")
-    public ModelAndView topTeams(){
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("/leaderboard/teams");
-
-        // add object called "teamsSelected".
-
-        // if teamsSelected = true...
-
-        return response;
-
-    }
 
 }

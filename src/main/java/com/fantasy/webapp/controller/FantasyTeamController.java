@@ -33,12 +33,6 @@ public class FantasyTeamController {
     @Autowired
     private PlayerDAO playerDAO;
 
-    // TODO! How to make it such that "User" shows up as the username,
-    // TODO! and not the user id?
-    // TODO! maybe just use a native query here so we can join with the user table and get the username from there?
-    // TODO!  also make it such this query searches for "LIKE", not exact.
-    // TODO! OR!!!! Or maybe do it as a separate query and then add it to the model??? Would that work???
-    // TODO! Also, consider changing the DAO method to something like findByTeamNameContainingIgnoreCase
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
         ModelAndView response = new ModelAndView();
@@ -61,7 +55,7 @@ public class FantasyTeamController {
 
 
 
-    // TODO - shows user a user-made fantasy team
+    // Shows user-made fantasy team
     @GetMapping("/fantasy_team/view/{fantasyTeamId}")
     public ModelAndView viewFantasyTeam(@PathVariable Integer fantasyTeamId){
         ModelAndView response = new ModelAndView();

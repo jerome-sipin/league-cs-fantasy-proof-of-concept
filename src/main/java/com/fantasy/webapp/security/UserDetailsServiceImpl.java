@@ -44,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        // load the user roles from our database
+        // load the user's roles from our database
         List<UserRole> userRoles = userRoleDao.findUserRolesByUserId(user.getId());
 
         // convert our user roles into spring granted authorities
