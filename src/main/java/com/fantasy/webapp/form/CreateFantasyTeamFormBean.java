@@ -1,5 +1,7 @@
 package com.fantasy.webapp.form;
 
+import com.fantasy.webapp.database.entity.Player;
+
 public class CreateFantasyTeamFormBean {
 
     // TODO - ????
@@ -9,5 +11,18 @@ public class CreateFantasyTeamFormBean {
 
     /// don't even need a form bean for this
 
+    private Integer id;
+
+    // @NotEmpty
+    // @Unique
+    // @Length(max = 50, message = "Team Name must be less than 50 characters")
+    private String teamName;
+
+    // TODO - Do form beans have to match the constructors? Can't I just have something like this?
+    private Player player1;
+    private Player player2;
+    private Player player3;
+    private Player player4;
+    private Player player5;
 
 }

@@ -9,14 +9,32 @@
 </section>
 
 <!-- TODO - Each TODO is its own section -->
-<!-- TODO - A text form for the team name.-->
 
-<!-- TODO - Number showing remaining budget. Prob controlled with Javascript. -->
-<!-- TODO - Underneath is a table that shows current lineup. Buttons underneath each that says "remove from lineup" -->
-<!-- Red buttons indicate you can remove from team -->
+<!-- TODO - Have a form over all of these items down to the submit button. -->
+
+<!-- TODO - A text form for the team name.-->
 <section class="bg-light1 pt-5 pb-5">
     <div class="container">
-        <h3 class="text-center">Remaining Budget: ${number}</h3>
+        <form action="/fantasy_team/create" class="mb-0">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="teamName" class="form-label">Team Name</label>
+                        <input type="text" class="form-control" id="teamName" name="teamName"
+                               value="${createdTeamName}">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- TODO - Number showing remaining budget. Prob controlled with Javascript. -->
+    <!-- TODO - Underneath is a table that shows current lineup. Buttons underneath each that says "remove from lineup" -->
+    <!-- Red buttons indicate you can remove from team -->
+
+    <div class="container">
+        <h3 class="text-center">Remaining Budget: $${budget}</h3>
     </div>
     <div class="container">
         <div><b>Your Team</b></div>
@@ -36,18 +54,35 @@
                 <td>Placeholder for image!</td>
             </tr>
             <tr>
-                <td><button type="button" class="btn btn-danger">Price</button></td>
-                <td><button type="button" class="btn btn-danger">Price</button></td>
-                <td><button type="button" class="btn btn-danger">Price</button></td>
-                <td><button type="button" class="btn btn-danger">Price</button></td>
-                <td><button type="button" class="btn btn-danger">Price</button></td>
+                <td>Player Name</td>
+                <td>Player Name</td>
+                <td>Player Name</td>
+                <td>Player Name</td>
+                <td>Player Name</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-danger">Price</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Price</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Price</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Price</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Price</button>
+                </td>
             </tr>
         </table>
     </div>
-</section>
 
-<!-- TODO - Two buttons - create team (1) and cancel (2) -->
-<section class="bg-light1">
+
+    <!-- TODO - Two buttons - create team (1) and cancel (2) -->
+
     <div class="container">
         <div class="row pt-5 pb-5 justify-content-center">
             <div class="col-6">
@@ -58,7 +93,8 @@
                                 <button id="submit" name="submit" class="btn btn-primary" value="1">Create Team</button>
                             </div>
                             <div class="col-6">
-                                <a href="/fantasy_team/create" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+                                <a href="/fantasy_team/create" id="cancel" name="cancel"
+                                   class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -100,7 +136,7 @@
                 <tr>
                     <c:forEach var="player" items="${playersKey}">
                         <c:if test="${player.teamActualId == team.id}">
-                            <td><button id="${player.id}" type="button" class="btn btn-success">$${player.cost}</button></td>
+                            <td><button id="${player.id}" onClick="addToTeam(this.id)" type="button" class="btn btn-success">$${player.cost}</button></td>
                         </c:if>
                     </c:forEach>
                 </tr>
@@ -110,6 +146,26 @@
 </c:forEach>
 
 <script>
+    <%--function addToTeam(clicked_id) {--%>
+    <%--    console.log(clicked_id);--%>
+    <%--    for (let i =0 ; i < ${playersKey.size()}; i++){--%>
+    <%--        console.log(${playersKey.get(i)});--%>
+    <%--    }--%>
+    <%--}--%>
+
+    // TODO - USE AJAX!!!!!
+    // Should the form use something like bbelow (from in-class example)??
+    // <input type="text" class="form-control" id="firstName" name="firstName" value="\${form.firstName}">
+    // Can this thing - value="\${variable}" - be in a table cell that isn't input?
+
+    // Use Ajax to retrieve data from real team cells and put them in the top row for fantasy team creation.
+    // Use a count variable to keep track of this. Starts at 0. When you cilck the green add to team buttons,
+    // append to id = blahblahblah0. Is there something in Java like Python fstrings?
+    // When you remove, that count variable goes down. It seems like it will be complicated
+    // to remove players and add a different one, though. If the count variable ever goes above 6, return an error.
+    // Within the player name cell, we will have a value="\${playersKey.get whatever player this is}.
+    // And while we test, let us just use admin/UID 1 and hard code it in while we test before we add in verification stuff.
+
 
 </script>
 

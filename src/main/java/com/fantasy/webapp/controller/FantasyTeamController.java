@@ -120,8 +120,13 @@ public class FantasyTeamController {
             players.addAll(roster);
         }
 
+        Integer budget = 1000000;
+
+        response.addObject("budget", budget);
         response.addObject("realTeamsKey", realTeams);
         response.addObject("playersKey", players);
+
+
 
 //        log.debug(realTeams.toString());
 //        log.debug(players.toString());
@@ -129,6 +134,15 @@ public class FantasyTeamController {
 
     }
 
+    @GetMapping("/fantasy_team/addPlayer")
+    public ModelAndView createFantasyTeam(@RequestParam Integer playerId) {
+        // Use the authenticated user service to look up
+
+        ModelAndView response = new ModelAndView();
+        return response;
+
+
+    }
 
     // TODO - one step that should be taken - check if team belongs to user
 

@@ -54,7 +54,7 @@
                         <a class="nav-link" href="/real_team/search">Search Real Teams</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/customer/search">Login</a>
+                        <a class="nav-link" href="/login/login">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/customer/search">Sign Up</a>

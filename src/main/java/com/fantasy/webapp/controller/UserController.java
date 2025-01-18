@@ -27,7 +27,6 @@ public class UserController {
         // TODO - Note for future me. that second parameter MUST BE NAMED THE SAME THING ON THE JSP!!!!
         response.addObject("search", username);
 
-        // TODO - IMPORTANT
         // Ask Eric about this. Wouldn't it be kind of insecure to do a query that puts passwords into the response
         // object? How would I fix this? I assume the correct answer would be to make this query select just the
         // username.
