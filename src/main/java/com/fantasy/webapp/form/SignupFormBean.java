@@ -1,5 +1,6 @@
 package com.fantasy.webapp.form;
 
+import com.fantasy.webapp.validation.EmailUnique;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +9,7 @@ import lombok.Setter;
 @Setter
 public class SignupFormBean {
 
-    // TODO - In-class examples have @EmailUnique, which we created during Spring Security
-    // TODO - Add this in later for unique email/username.
+    @EmailUnique
     @NotEmpty(message = "Email is required")
     private String email;
 

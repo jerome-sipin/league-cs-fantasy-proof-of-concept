@@ -43,7 +43,7 @@ public class LeaderboardController {
     public ModelAndView leaderboard() {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("/leaderboard/view");
+        response.setViewName("leaderboard/view");
 
         List<FantasyTeam> teams = fantasyTeamDAO.sortFantasyTeamsByPoints();
         List<Player> players = playerDAO.sortPlayersByScore();

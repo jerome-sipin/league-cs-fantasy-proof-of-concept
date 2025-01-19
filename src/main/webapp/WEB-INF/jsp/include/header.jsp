@@ -33,12 +33,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/fantasy_team/create">Create Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/fantasy_team/edit">Edit Team</a>
-                    </li>
+                    <sec:authorize access="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fantasy_team/create">Create Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fantasy_team/edit">Edit Team</a>
+                        </li>
+                    </sec:authorize>
                     <li class="nav-item">
                         <a class="nav-link" href="/leaderboard/view">Leaderboard</a>
                     </li>

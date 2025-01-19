@@ -98,41 +98,69 @@ public class FantasyTeamController {
     // has the player picture, and their name.
     // TODO - there needs to be some sort of authorization here. If the user already has a team, do not show
     // TODO - them the create button.
-    @GetMapping("/fantasy_team/create")
-    public ModelAndView createFantasyTeam() {
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("fantasy_team/create");
-
-        // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
-        List<RealTeam> realTeams = realTeamDAO.findAllTeams();
-        // List<Player> players = playerDAO.findAllPlayers();
-
-        List<Player> players = new ArrayList<>();
-        for (RealTeam rt : realTeams){
-            List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
-            players.addAll(roster);
-        }
-
-        Integer budget = 1000000;
-
-        response.addObject("budget", budget);
-        response.addObject("realTeamsKey", realTeams);
-        response.addObject("playersKey", players);
 
 
 
-//        log.debug(realTeams.toString());
-//        log.debug(players.toString());
-        return response;
+    // TODO - With what Eric said, I think a better implementation of this would be to have create simply be
+    // TODO - to create a team id and name. Once you press the submit, the form bean goes through and you the team is created
+    // TODO - then you are redirected to the edit screen. You can then add players. Things like budget are controlled
+    // TODO - through the edit controller.
+    // TODO - Or maybe, add budget as an attribute to the fantasy team. Also add a DAO method for "get total price of team"
+//    @GetMapping("/fantasy_team/create")
+//    public ModelAndView createFantasyTeam() {
+//        ModelAndView response = new ModelAndView();
+//
+//        response.setViewName("fantasy_team/create");
+//
+//        // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
+//        List<RealTeam> realTeams = realTeamDAO.findAllTeams();
+//        // List<Player> players = playerDAO.findAllPlayers();
+//
+//        List<Player> players = new ArrayList<>();
+//        for (RealTeam rt : realTeams){
+//            List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
+//            players.addAll(roster);
+//        }
+//
+//        Integer budget = 1000000;
+//
+//        response.addObject("budget", budget);
+//        response.addObject("realTeamsKey", realTeams);
+//        response.addObject("playersKey", players);
+//
+//
+//
+////        log.debug(realTeams.toString());
+////        log.debug(players.toString());
+//        return response;
+//
+//    }
 
-    }
+
+@GetMapping("/fantasy_team/create")
+public ModelAndView createFantasyTeam(){
+    ModelAndView response = new ModelAndView();
+    response.setViewName("fantasy_team/create");
+    return response;
+}
 
     @GetMapping("/fantasy_team/addPlayer")
     public ModelAndView createFantasyTeam(@RequestParam Integer playerId) {
         // Use the authenticated user service to look up
 
         ModelAndView response = new ModelAndView();
+
+        response.setViewName("fantasy_team/addPlayer");
+
+        // add object to buttons.
+
+        // if button is pressed... add player where team id = current team id.
+        // idk about the logic for this one, though. refer to what happens during a basic search. also look up
+        // how other people have implemented shopping carts. the same logic should apply.
+
+        // redirect to view team page
+
+
         return response;
 
 
