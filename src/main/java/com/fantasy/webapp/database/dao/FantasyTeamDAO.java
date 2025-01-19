@@ -21,4 +21,6 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
     //List<Map<String,Object>> sortTeamsByPoints();
     List<FantasyTeam> sortFantasyTeamsByPoints();
 
+    FantasyTeam findByUserId(Integer userId);
+
 }

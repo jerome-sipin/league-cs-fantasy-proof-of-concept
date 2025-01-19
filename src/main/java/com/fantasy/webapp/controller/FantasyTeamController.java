@@ -140,14 +140,26 @@ public class FantasyTeamController {
 //        return response;
 //
 //    }
+    @GetMapping("/fantasy_team/create")
+    public ModelAndView createFantasyTeam() {
+        ModelAndView response = new ModelAndView();
+
+        // check if user has a team already. if so, redirect them to view team page.
+        // else, continue to create team page
+        User currentUser = authenticatedUserService.loadCurrentUser();
+        FantasyTeam fantasyTeam = fantasyTeamDAO.findByUserId(currentUser.getId());
+
+        if (fantasyTeam == null) {
+            response.setViewName("fantasy_team/create");
+        } else {
+            Integer teamId = fantasyTeam.getId();
+            response.setViewName("redirect:/fantasy_team/view/" + teamId);
+        }
+
+        return response;
+    }
 
 
-@GetMapping("/fantasy_team/create")
-public ModelAndView createFantasyTeam(){
-    ModelAndView response = new ModelAndView();
-    response.setViewName("fantasy_team/create");
-    return response;
-}
 
     @GetMapping("/fantasy_team/addPlayer")
     public ModelAndView createFantasyTeam(@RequestParam Integer playerId) {
