@@ -23,4 +23,6 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
 
     FantasyTeam findByUserId(Integer userId);
 
+    FantasyTeam findByTeamName(String teamName);
+
 }

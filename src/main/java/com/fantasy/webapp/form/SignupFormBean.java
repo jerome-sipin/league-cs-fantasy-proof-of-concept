@@ -1,6 +1,7 @@
 package com.fantasy.webapp.form;
 
 import com.fantasy.webapp.validation.EmailUnique;
+import com.fantasy.webapp.validation.UsernameUnique;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class SignupFormBean {
     private String email;
 
     @NotEmpty(message = "Username is required")
+    @UsernameUnique
     private String username;
 
     @NotEmpty(message = "Password is required")
