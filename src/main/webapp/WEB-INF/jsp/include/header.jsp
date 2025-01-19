@@ -69,7 +69,7 @@
                             <a class="nav-link" href="/login/login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login/signup">Register</a>
+                            <a class="nav-link" href="/login/register">Register</a>
                         </li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">

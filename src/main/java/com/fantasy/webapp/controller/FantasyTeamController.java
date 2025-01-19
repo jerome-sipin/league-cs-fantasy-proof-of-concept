@@ -3,6 +3,7 @@ package com.fantasy.webapp.controller;
 import com.fantasy.webapp.database.dao.*;
 import com.fantasy.webapp.database.entity.*;
 import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
+import com.fantasy.webapp.security.AuthenticatedUserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,12 @@ public class FantasyTeamController {
 
     @Autowired
     private RealTeamDAO realTeamDAO;
+
     @Autowired
     private PlayerDAO playerDAO;
+
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
 
     @GetMapping("/fantasy_team/search")
     public ModelAndView search(@RequestParam(required = false) String teamName){
