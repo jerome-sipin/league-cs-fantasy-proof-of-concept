@@ -200,6 +200,9 @@ public class FantasyTeamController {
         // idk about the logic for this one, though. refer to what happens during a basic search. also look up
         // how other people have implemented shopping carts. the same logic should apply.
 
+        // TODO to get current team budget. 
+        // Integer cost = fantasyTeamDAO.getTeamTotalCost(fantasyTeamId);
+
         // redirect to view team page
 
 

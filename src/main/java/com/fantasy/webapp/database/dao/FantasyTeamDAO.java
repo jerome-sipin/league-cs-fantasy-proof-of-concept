@@ -25,4 +25,17 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
 
     FantasyTeam findByTeamName(String teamName);
 
+    // TODO - Get Team Cost
+    @Query(value = "select sum(p.cost)" +
+                "from players_fantasy as pf " +
+                "left join players p on p.id = pf.player_id " +
+                "left join teams_fantasy tf on tf.id = fantasy_team_id " +
+                "where tf.id = :teamId ", nativeQuery = true)
+    Integer getTeamTotalCost(Integer teamId);
+
+    // TODO - Get Team Total Points
+    // This doesn't really make complete sense for a "final" product. Say, for example, a user starts playing
+    // this fantasy game like, halfway through the season. Why would they get points based on performances of players
+    // that have already happened?
+
 }
