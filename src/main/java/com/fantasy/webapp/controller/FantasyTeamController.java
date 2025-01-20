@@ -170,30 +170,40 @@ public class FantasyTeamController {
     public ModelAndView editFantasyTeam(@PathVariable Integer fantasyTeamId) {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("fantasy_team/edit");
+        // check to see if this is current user's team. if not, redirect to home
 
-        FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
-        List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
-        Integer budget = currentFantasyTeam.getBudget();
-        String teamName = currentFantasyTeam.getTeamName();
+        User currentUser = authenticatedUserService.loadCurrentUser();
+        Integer currentUserTeam = fantasyTeamDAO.findByUserId(currentUser.getId()).getId();
+
+        if (Objects.equals(currentUserTeam, fantasyTeamId)){
+            response.setViewName("fantasy_team/edit");
+
+            FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
+            List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
+            Integer budget = currentFantasyTeam.getBudget();
+            String teamName = currentFantasyTeam.getTeamName();
 
 
 
-        // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
-        List<RealTeam> realTeams = realTeamDAO.findAllTeams();
-        // List<Player> players = playerDAO.findAllPlayers();
+            // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
+            List<RealTeam> realTeams = realTeamDAO.findAllTeams();
+            // List<Player> players = playerDAO.findAllPlayers();
 
-        List<Player> players = new ArrayList<>();
-        for (RealTeam rt : realTeams){
-            List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
-            players.addAll(roster);
+            List<Player> players = new ArrayList<>();
+            for (RealTeam rt : realTeams){
+                List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
+                players.addAll(roster);
+            }
+
+            response.addObject("teamName", teamName);
+            response.addObject("currentTeamPlayersKey", currentFantasyTeamPlayers);
+            response.addObject("budget", budget);
+            response.addObject("realTeamsKey", realTeams);
+            response.addObject("playersKey", players);
+        } else {
+            response.setViewName("redirect:/");
         }
 
-        response.addObject("teamName", teamName);
-        response.addObject("currentTeamPlayersKey", currentFantasyTeamPlayers);
-        response.addObject("budget", budget);
-        response.addObject("realTeamsKey", realTeams);
-        response.addObject("playersKey", players);
 
 
 
