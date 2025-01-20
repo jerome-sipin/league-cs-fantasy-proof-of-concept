@@ -32,6 +32,9 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
     @Query(value = "select count(player_id) from players_fantasy where fantasy_team_id = :teamId", nativeQuery = true)
     Integer getTeamPlayerCount(Integer teamId);
 
+    // Update fantasy team budget
+    @Query(value = "update teams_fantasy set budget = :price where user_id = :userId", nativeQuery = true)
+    void updateBudget(Integer userId, Integer price);
 
 
     // TODO - Get Team Total Points

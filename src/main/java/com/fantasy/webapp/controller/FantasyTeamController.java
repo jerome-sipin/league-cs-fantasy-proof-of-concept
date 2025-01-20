@@ -212,44 +212,61 @@ public class FantasyTeamController {
         User currentUser = authenticatedUserService.loadCurrentUser();
         FantasyTeam currentTeam = fantasyTeamDAO.findByUserId(currentUser.getId());
         Player player = playerDAO.findById(playerId);
-        log.debug(String.valueOf(playerId));
+        // log.debug(String.valueOf(playerId));
         if ( fantasyTeamDAO.getTeamPlayerCount(currentTeam.getId()) < 5 ){
-            FantasyPlayer fantasyPlayer = new FantasyPlayer();
-            fantasyPlayer.setPlayer(player);
-            fantasyPlayer.setFantasyTeam(currentTeam);
 
-//            fantasyPlayer.setPlayerId(playerId);
-//            fantasyPlayer.setFantasyTeamId(currentTeam.getId());
+            // Check to see if this player is already in the team. Redirect back to the edit page (with
+            // some sort of error message) if so. Otherwise, continue to add player to team.
 
-            fantasyPlayerDAO.save(fantasyPlayer);
+            // Get roster of user's fantasy team
+            // TODO - Surely, there must be a more efficient way to do this, right?
+            // TODO - Isn't it  bad to have these super long chains of if/else statements?
+            List<FantasyPlayer> currentTeamRoster = fantasyPlayerDAO.findPlayersByFantasyTeamId(currentTeam.getId());
 
+            List<Player> players = new ArrayList<>();
+            for (FantasyPlayer fp : currentTeamRoster) {
+                players.add(fp.getPlayer());
+            }
 
-            // TODO - It is adding playerID null!!!! I'm sure this is doing this because of
-            response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
-            log.debug("Adding player with id {}", fantasyPlayer.getPlayerId());
+            if ( players.contains(player)){
+                log.debug("Error - player already in team");
+                response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+            } else {
+
+                // Check to see if this player is within budget
+                if ( player.getCost() > currentTeam.getBudget() ){
+                    log.debug("Error - player too expensive");
+                    response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+                } else {
+                    // Add player into database for this team.
+                    FantasyPlayer fantasyPlayer = new FantasyPlayer();
+                    fantasyPlayer.setPlayer(player);
+                    fantasyPlayer.setFantasyTeam(currentTeam);
+                    fantasyPlayerDAO.save(fantasyPlayer);
+
+                    // Only 2 players in a fantasy team can be actual teammates in real life. If adding this player
+                    // would make this team have 3 players that are real teammates, return to view screen and
+                    // return error.
+                    List<Integer> actualTeamCount = fantasyPlayerDAO.
+                            getFantasyTeamActualTeamCountsByFantasyTeamId(currentTeam.getId());
+                    if (actualTeamCount.contains(3)) {
+                        // delete this record from the database
+                        fantasyPlayerDAO.delete(fantasyPlayer);
+                        log.debug("Error - too many players from the same real team");
+                        response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+                    } else {
+                        // Finally, update team budget and redirect to view screen.
+                        currentTeam.setBudget(currentTeam.getBudget() - player.getCost());
+                        fantasyTeamDAO.save(currentTeam);
+                        response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
+                    }
+                }
+            }
         } else {
             // TODO - Need to add some sort of error, though... Maybe ask Eric about it tomorrow.
-            response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
+            response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
             log.debug("Error here");
         }
-
-
-
-
-        // retrieve team id.
-
-
-        // add object to buttons.
-
-        // if button is pressed... add player where team id = current team id.
-        // idk about the logic for this one, though. refer to what happens during a basic search. also look up
-        // how other people have implemented shopping carts. the same logic should apply.
-
-        // TODO to get current team budget.
-        // Integer cost = fantasyTeamDAO.getTeamTotalCost(fantasyTeamId);
-
-        // redirect to view team page
-
 
         return response;
     }
@@ -260,6 +277,8 @@ public class FantasyTeamController {
         response.setViewName("fantasy_team/dropPlayer");
 
         // refer to what we did for addPlayer. Do the same thing but with drop player.
+
+        // TODO - probably need to make a deleteBy method in the DAO.
 
         return response;
     }
