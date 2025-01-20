@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Controller
@@ -76,10 +77,23 @@ public class FantasyTeamController {
             playerInformation.add(x.getPlayer());
         }
 
+        User currentUser = authenticatedUserService.loadCurrentUser();
+        Integer currentUserId = currentUser.getId();
+
+        Integer currentUserTeam = fantasyTeamDAO.findByUserId(currentUserId).getId();
+
+        if (Objects.equals(currentUserTeam, fantasyTeamId)){
+            Boolean canEdit = true;
+            response.addObject("canEdit", canEdit);
+        }
+
         response.addObject("teamInformationKey", teamInformation);
         response.addObject("playersKey", playerInformation);
 
-        log.debug(response.toString());
+
+//        log.debug(response.toString());
+
+
 
         return response;
     }
@@ -200,7 +214,7 @@ public class FantasyTeamController {
         // idk about the logic for this one, though. refer to what happens during a basic search. also look up
         // how other people have implemented shopping carts. the same logic should apply.
 
-        // TODO to get current team budget. 
+        // TODO to get current team budget.
         // Integer cost = fantasyTeamDAO.getTeamTotalCost(fantasyTeamId);
 
         // redirect to view team page

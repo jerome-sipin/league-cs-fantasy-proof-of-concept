@@ -34,4 +34,16 @@
     </div>
 </section>
 
+<c:if test="${canEdit == true}">
+    <section class="bg-light2">
+        <div class="container">
+            <div class="row pt-5 pb-5">
+                <div class="col-6">
+                    <div>Hello</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</c:if>
+
 <jsp:include page="../include/footer.jsp"/>
