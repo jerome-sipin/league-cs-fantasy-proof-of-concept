@@ -4,6 +4,7 @@ import com.fantasy.webapp.database.dao.*;
 import com.fantasy.webapp.database.entity.*;
 import com.fantasy.webapp.form.CreateFantasyTeamFormBean;
 import com.fantasy.webapp.security.AuthenticatedUserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -156,6 +157,30 @@ public class FantasyTeamController {
             response.setViewName("redirect:/fantasy_team/view/" + teamId);
         }
 
+        return response;
+    }
+
+    @PostMapping("/fantasy_team/createSubmit")
+    public ModelAndView createFantasyTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult, HttpSession session) {
+        ModelAndView response = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            response.setViewName("fantasy_team/create");
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+        } else {
+            User currentUser = authenticatedUserService.loadCurrentUser();
+
+            FantasyTeam fantasyTeam = new FantasyTeam();
+
+
+            fantasyTeam.setTeamName(form.getTeamName());
+            fantasyTeam.setUserId(currentUser.getId());
+
+            fantasyTeamDAO.save(fantasyTeam);
+
+            response.setViewName("redirect:/fantasy_team/view/" + fantasyTeam.getId());
+        }
         return response;
     }
 
