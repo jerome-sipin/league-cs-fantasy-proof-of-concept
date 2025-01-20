@@ -21,6 +21,16 @@ public interface PlayerDAO extends JpaRepository<Player, Long> {
 
     List<Player> findPlayersByTeamActualId(Integer actualTeamId);
 
+//    @Query(value = "select p.player_name from players p " +
+//            "inner join players_fantasy pf on p.id = pf.player_id " +
+//            "where pf.fantasy_team_id = :fantasyTeamId", nativeQuery = true)
+//
+//    @Query(value = "select * " +
+//            "from players p " +
+//            "inner join players_fantasy pf on p.id = pf.player_id " +
+//            "where pf.fantasy_team_id = :fantasyTeamId", nativeQuery = true)
+//    List<Player> findPlayersByFantasyTeamId(Integer fantasyTeamId);
+
     @Query(value = "select  * from players order by points desc", nativeQuery = true)
     List<Player> sortPlayersByScore();
 

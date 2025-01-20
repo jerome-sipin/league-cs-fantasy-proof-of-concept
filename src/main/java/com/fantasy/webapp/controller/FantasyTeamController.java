@@ -177,7 +177,15 @@ public class FantasyTeamController {
 
             // Load data of current user's team - roster, team name, remaining budget
             FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
-            List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
+
+            // Find current user's team's roster.
+            List<FantasyPlayer> teamRoster = fantasyPlayerDAO.findPlayersByFantasyTeamId(fantasyTeamId);
+            List<Player> playerInformation = new ArrayList<>();
+            for (FantasyPlayer x : teamRoster) {
+                playerInformation.add(x.getPlayer());
+            }
+
+
             Integer budget = currentFantasyTeam.getBudget();
             String teamName = currentFantasyTeam.getTeamName();
 
@@ -191,7 +199,7 @@ public class FantasyTeamController {
             }
 
             response.addObject("teamName", teamName);
-            response.addObject("currentTeamPlayersKey", currentFantasyTeamPlayers);
+            response.addObject("currentTeamPlayersKey", playerInformation);
             response.addObject("budget", budget);
             response.addObject("realTeamsKey", realTeams);
             response.addObject("playersKey", players);
