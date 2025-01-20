@@ -37,9 +37,17 @@
 <c:if test="${canEdit == true}">
     <section class="bg-light2">
         <div class="container">
-            <div class="row pt-5 pb-5">
+            <div class="row pt-5 pb-5 justify-content-center">
                 <div class="col-6">
-                    <div>Hello</div>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                                    <a href="/fantasy_team/edit/${teamInformationKey.id}"  class="btn btn-primary">Edit Team</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -64,11 +64,10 @@
                     <div class="col-6">
                         <div class="row justify-content-center">
                             <div class="col-6">
-                                <button id="submit" name="submit" class="btn btn-primary" value="1">Create Team</button>
+                                <button id="submit" name="submit" class="btn btn-primary" value="1">Save Changes</button>
                             </div>
                             <div class="col-6">
-                                <a href="/fantasy_team/create" id="cancel" name="cancel"
-                                   class="btn btn-danger">Cancel</a>
+                                <a href="" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </div>

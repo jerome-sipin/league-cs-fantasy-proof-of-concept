@@ -41,17 +41,17 @@ public class FantasyTeamController {
     private AuthenticatedUserService authenticatedUserService;
 
     @GetMapping("/fantasy_team/search")
-    public ModelAndView search(@RequestParam(required = false) String teamName){
+    public ModelAndView search(@RequestParam(required = false) String teamName) {
         ModelAndView response = new ModelAndView();
 
         response.setViewName("fantasy_team/search");
 
         response.addObject("search", teamName);
 
-        if (teamName != null){
+        if (teamName != null) {
             List<FantasyTeam> team = fantasyTeamDAO.findByTeamNameIgnoreCase(teamName);
             // Get userid from above list, then query db for said user
-            for (FantasyTeam t : team){
+            for (FantasyTeam t : team) {
                 User user = userDAO.findById(t.getUserId());
                 response.addObject("usersKey", user);
             }
@@ -61,10 +61,9 @@ public class FantasyTeamController {
     }
 
 
-
     // Shows user-made fantasy team
     @GetMapping("/fantasy_team/view/{fantasyTeamId}")
-    public ModelAndView viewFantasyTeam(@PathVariable Integer fantasyTeamId){
+    public ModelAndView viewFantasyTeam(@PathVariable Integer fantasyTeamId) {
         ModelAndView response = new ModelAndView();
 
         response.setViewName("fantasy_team/view");
@@ -73,7 +72,7 @@ public class FantasyTeamController {
         FantasyTeam teamInformation = fantasyTeamDAO.findById(fantasyTeamId);
 
         List<Player> playerInformation = new ArrayList<>();
-        for (FantasyPlayer x : teamRoster){
+        for (FantasyPlayer x : teamRoster) {
             playerInformation.add(x.getPlayer());
         }
 
@@ -84,7 +83,7 @@ public class FantasyTeamController {
 
         Integer currentUserTeam = fantasyTeamDAO.findByUserId(currentUserId).getId();
 
-        if (Objects.equals(currentUserTeam, fantasyTeamId)){
+        if (Objects.equals(currentUserTeam, fantasyTeamId)) {
             Boolean canEdit = true;
             response.addObject("canEdit", canEdit);
         }
@@ -160,7 +159,6 @@ public class FantasyTeamController {
     // TODO - them the create button.
 
 
-
     // TODO - With what Eric said, I think a better implementation of this would be to have create simply be
     // TODO - to create a team id and name. Once you press the submit, the form bean goes through and you the team is created
     // TODO - then you are redirected to the edit screen. You can then add players. Things like budget are controlled
@@ -171,26 +169,23 @@ public class FantasyTeamController {
         ModelAndView response = new ModelAndView();
 
         // check to see if this is current user's team. if not, redirect to home
-
         User currentUser = authenticatedUserService.loadCurrentUser();
         Integer currentUserTeam = fantasyTeamDAO.findByUserId(currentUser.getId()).getId();
 
-        if (Objects.equals(currentUserTeam, fantasyTeamId)){
+        if (Objects.equals(currentUserTeam, fantasyTeamId)) {
             response.setViewName("fantasy_team/edit");
 
+            // Load data of current user's team.
             FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
             List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
             Integer budget = currentFantasyTeam.getBudget();
             String teamName = currentFantasyTeam.getTeamName();
 
-
-
-            // first order of business - run DAO queries to retrieve all real teams, their players, and the cost of said players
+            // Retrieve data for all real teams and their players.
             List<RealTeam> realTeams = realTeamDAO.findAllTeams();
-            // List<Player> players = playerDAO.findAllPlayers();
 
             List<Player> players = new ArrayList<>();
-            for (RealTeam rt : realTeams){
+            for (RealTeam rt : realTeams) {
                 List<Player> roster = playerDAO.findPlayersByTeamActualId(rt.getId());
                 players.addAll(roster);
             }
@@ -203,12 +198,6 @@ public class FantasyTeamController {
         } else {
             response.setViewName("redirect:/");
         }
-
-
-
-
-//        log.debug(realTeams.toString());
-//        log.debug(players.toString());
         return response;
 
     }
@@ -242,7 +231,6 @@ public class FantasyTeamController {
         response.setViewName("fantasy_team/dropPlayer");
         return response;
     }
-
 
 
 }
