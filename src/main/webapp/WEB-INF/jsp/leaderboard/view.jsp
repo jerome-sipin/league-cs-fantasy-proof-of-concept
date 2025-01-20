@@ -82,7 +82,7 @@
                             <td>${usersKey.get(status.index).username}</td>
                             <td>${team.teamName}</td>
                             <td>${team.points}</td>
-                            <td>View</td>
+                            <td><a href="/fantasy_team/view/${team.id}" >View</a></td>
                         </tr>
                     </c:forEach>
                 </table>
