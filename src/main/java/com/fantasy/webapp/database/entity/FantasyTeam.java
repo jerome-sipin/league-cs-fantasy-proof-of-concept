@@ -36,4 +36,7 @@ public class FantasyTeam {
 
     @Column(name = "points")
     private Integer points;
+
+    @Column(name = "budget")
+    private Integer budget;
 }
