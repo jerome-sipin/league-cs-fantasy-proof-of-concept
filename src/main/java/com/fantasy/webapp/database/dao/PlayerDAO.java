@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface PlayerDAO extends JpaRepository<Player, Long> {
 
-    List<Player> findById(Integer id);
+    Player findById(Integer id);
 
     List<Player> findByPlayerNameContainingIgnoreCase(String playerName);
 

@@ -47,7 +47,7 @@
             <tr>
                 <c:forEach var="player" items="${currentTeamPlayersKey}">
                         <td>
-                            <button id="${player.id}" type="button" class="btn btn-danger">$${player.cost}</button>
+                            <button id="fantasy-team-${player.id}" type="button" class="btn btn-danger">$${player.cost}</button>
                         </td>
                 </c:forEach>
             </tr>
@@ -110,7 +110,10 @@ TODO - players, and underneath, a button with their price. -->
                     <c:forEach var="player" items="${playersKey}">
                         <c:if test="${player.teamActualId == team.id}">
                             <td>
-                                <button id="${player.id}" type="button" class="btn btn-success">$${player.cost}</button>
+                                <form action="/fantasy_team/addPlayer/${player.id}" method="post">
+                                    <button id="${player.id}"
+                                            type="submit" class="btn btn-success">$${player.cost}</button>
+                                </form>
                             </td>
                         </c:if>
                     </c:forEach>

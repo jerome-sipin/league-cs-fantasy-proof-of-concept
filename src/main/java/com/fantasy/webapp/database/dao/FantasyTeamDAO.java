@@ -11,27 +11,28 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
 
     FantasyTeam findById(Integer id);
 
-
-//    @Query("select ft from FantasyTeam ft where ft.teamName = :teamName")
-//    List<FantasyTeam> findByTeamName(String teamName);
-
     List<FantasyTeam> findByTeamNameIgnoreCase(String teamName);
 
     @Query(value = "select  * from teams_fantasy order by points desc", nativeQuery = true)
-    //List<Map<String,Object>> sortTeamsByPoints();
     List<FantasyTeam> sortFantasyTeamsByPoints();
 
     FantasyTeam findByUserId(Integer userId);
 
     FantasyTeam findByTeamName(String teamName);
 
-    // TODO - Get Team Cost
+    // Retrieve total cost of team
     @Query(value = "select sum(p.cost)" +
                 "from players_fantasy as pf " +
                 "left join players p on p.id = pf.player_id " +
                 "left join teams_fantasy tf on tf.id = fantasy_team_id " +
                 "where tf.id = :teamId ", nativeQuery = true)
     Integer getTeamTotalCost(Integer teamId);
+
+    // Retrieve current amount of players in team.
+    @Query(value = "select count(player_id) from players_fantasy where fantasy_team_id = :teamId", nativeQuery = true)
+    Integer getTeamPlayerCount(Integer teamId);
+
+
 
     // TODO - Get Team Total Points
     // This doesn't really make complete sense for a "final" product. Say, for example, a user starts playing

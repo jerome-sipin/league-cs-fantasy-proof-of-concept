@@ -175,7 +175,7 @@ public class FantasyTeamController {
         if (Objects.equals(currentUserTeam, fantasyTeamId)) {
             response.setViewName("fantasy_team/edit");
 
-            // Load data of current user's team.
+            // Load data of current user's team - roster, team name, remaining budget
             FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
             List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
             Integer budget = currentFantasyTeam.getBudget();
@@ -202,13 +202,42 @@ public class FantasyTeamController {
 
     }
 
-    @PostMapping("/fantasy_team/addPlayer")
-    public ModelAndView createFantasyTeam(@RequestParam Integer playerId) {
-        // Use the authenticated user service to look up
-
+    @PostMapping("/fantasy_team/addPlayer/{playerId}")
+    public ModelAndView addPlayer( @PathVariable Integer playerId) {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("fantasy_team/addPlayer");
+
+        // check if user has 5 players already. if yes, redirect back to edit page; otherwise,
+        // return some kind of error
+        User currentUser = authenticatedUserService.loadCurrentUser();
+        FantasyTeam currentTeam = fantasyTeamDAO.findByUserId(currentUser.getId());
+        Player player = playerDAO.findById(playerId);
+        log.debug(String.valueOf(playerId));
+        if ( fantasyTeamDAO.getTeamPlayerCount(currentTeam.getId()) < 5 ){
+            FantasyPlayer fantasyPlayer = new FantasyPlayer();
+            fantasyPlayer.setPlayer(player);
+            fantasyPlayer.setFantasyTeam(currentTeam);
+
+//            fantasyPlayer.setPlayerId(playerId);
+//            fantasyPlayer.setFantasyTeamId(currentTeam.getId());
+
+            fantasyPlayerDAO.save(fantasyPlayer);
+
+
+            // TODO - It is adding playerID null!!!! I'm sure this is doing this because of
+            response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
+            log.debug("Adding player with id {}", fantasyPlayer.getPlayerId());
+        } else {
+            // TODO - Need to add some sort of error, though... Maybe ask Eric about it tomorrow.
+            response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
+            log.debug("Error here");
+        }
+
+
+
+
+        // retrieve team id.
+
 
         // add object to buttons.
 
@@ -229,6 +258,9 @@ public class FantasyTeamController {
     public ModelAndView dropPlayer(@RequestParam Integer playerId) {
         ModelAndView response = new ModelAndView();
         response.setViewName("fantasy_team/dropPlayer");
+
+        // refer to what we did for addPlayer. Do the same thing but with drop player.
+
         return response;
     }
 
