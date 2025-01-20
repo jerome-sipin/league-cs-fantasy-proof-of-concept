@@ -4,7 +4,7 @@
 
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
-        <h1 class="text-center">Create a Fantasy Team</h1>
+        <h1 class="text-center">${teamName}</h1>
     </div>
 </section>
 

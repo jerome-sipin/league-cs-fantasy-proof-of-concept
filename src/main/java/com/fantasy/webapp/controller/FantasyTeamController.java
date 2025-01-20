@@ -174,6 +174,8 @@ public class FantasyTeamController {
 
         FantasyTeam currentFantasyTeam = fantasyTeamDAO.findById(fantasyTeamId);
         List<Player> currentFantasyTeamPlayers = playerDAO.findPlayersByTeamActualId(fantasyTeamId);
+        Integer budget = currentFantasyTeam.getBudget();
+        String teamName = currentFantasyTeam.getTeamName();
 
 
 
@@ -187,8 +189,7 @@ public class FantasyTeamController {
             players.addAll(roster);
         }
 
-        Integer budget = currentFantasyTeam.getBudget();
-
+        response.addObject("teamName", teamName);
         response.addObject("currentTeamPlayersKey", currentFantasyTeamPlayers);
         response.addObject("budget", budget);
         response.addObject("realTeamsKey", realTeams);
