@@ -60,7 +60,7 @@ public class RealTeamController {
 
         return response;
     }
-
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/real_team/createSubmit")
     public ModelAndView createRealTeamSubmit(@Valid CreateRealTeamFormBean form, BindingResult bindingResult){
         ModelAndView response = new ModelAndView();

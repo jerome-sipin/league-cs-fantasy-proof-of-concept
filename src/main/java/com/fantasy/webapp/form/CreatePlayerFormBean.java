@@ -13,8 +13,9 @@ public class CreatePlayerFormBean {
     @NotEmpty
     private String playerName;
 
-    @NotEmpty
     private Integer actualTeamId;
+
+    private Integer cost;
 
     @NotEmpty
     private String playerImageUrl;

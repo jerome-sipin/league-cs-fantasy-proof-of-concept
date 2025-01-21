@@ -4,10 +4,15 @@ import com.fantasy.webapp.database.dao.PlayerDAO;
 import com.fantasy.webapp.database.dao.RealTeamDAO;
 import com.fantasy.webapp.database.entity.Player;
 import com.fantasy.webapp.database.entity.RealTeam;
+import com.fantasy.webapp.form.CreatePlayerFormBean;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,6 +56,7 @@ public class PlayerController {
         return response;
     }
 
+    @PreAuthorize("hasAuthority('Admin')")
     @GetMapping("/player/create")
     public ModelAndView create() {
         ModelAndView response = new ModelAndView();
@@ -65,6 +71,33 @@ public class PlayerController {
 
         return response;
     }
+
+    @PreAuthorize("hasAuthority('Admin')")
+    @PostMapping("/player/createSubmit")
+    public ModelAndView createPlayerSubmit(@Valid CreatePlayerFormBean form, BindingResult bindingResult) {
+        ModelAndView response = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            response.setViewName("player/create");
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+            log.debug(bindingResult.toString());
+        } else{
+            Player player = new Player();
+
+            player.setPlayerName(form.getPlayerName());
+            player.setTeamActualId(form.getActualTeamId());
+            player.setCost(form.getCost());
+            player.setImageUrl(form.getPlayerImageUrl());
+            playerDAO.save(player);
+
+            response.setViewName("redirect:/player/search");
+
+        }
+
+        return response;
+    }
+
 
 
 
