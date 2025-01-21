@@ -4,10 +4,13 @@ import com.fantasy.webapp.database.dao.PlayerDAO;
 import com.fantasy.webapp.database.dao.RealTeamDAO;
 import com.fantasy.webapp.database.entity.Player;
 import com.fantasy.webapp.database.entity.RealTeam;
+import com.fantasy.webapp.form.CreateRealTeamFormBean;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +52,7 @@ public class RealTeamController {
     }
 
     @PreAuthorize("hasAuthority('Admin')")
-    @GetMapping("real_team/create")
+    @GetMapping("/real_team/create")
     public ModelAndView createRealTeam(){
         ModelAndView response = new ModelAndView();
 
@@ -58,4 +61,23 @@ public class RealTeamController {
         return response;
     }
 
+    @PostMapping("/real_team/createSubmit")
+    public ModelAndView createRealTeamSubmit(@Valid CreateRealTeamFormBean form, BindingResult bindingResult){
+        ModelAndView response = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            response.setViewName("real_team/create");
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+        } else {
+            RealTeam realTeam = new RealTeam();
+
+            realTeam.setTeamName(form.getTeamName());
+
+            realTeamDAO.save(realTeam);
+
+            response.setViewName("redirect:/real_team/search");
+        }
+        return response;
+    }
 }

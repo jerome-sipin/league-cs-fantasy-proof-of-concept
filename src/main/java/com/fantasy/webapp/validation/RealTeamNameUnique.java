@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 public @interface RealTeamNameUnique {
 
     // TODO - Isn't this what shows when there is an error? Edit this later.
-    String message() default "{UsernameUnique}";
+    String message() default "Team Name must be unique!";
 
     Class<?>[] groups() default {};
 

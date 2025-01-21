@@ -118,7 +118,7 @@ public class FantasyTeamController {
     }
 
     @PostMapping("/fantasy_team/createSubmit")
-    public ModelAndView createFantasyTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView createFantasyTeamSubmit(@Valid CreateFantasyTeamFormBean form, BindingResult bindingResult) {
         ModelAndView response = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
