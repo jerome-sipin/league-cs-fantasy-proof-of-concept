@@ -12,7 +12,7 @@
 
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
-        <table class="table mt-5">
+        <table class="table mt-5 text-center">
             <tr>
                 <th>Player 1</th>
                 <th>Player 2</th>
@@ -22,7 +22,9 @@
             </tr>
             <tr>
                 <c:forEach var="player" items="${playersKey}">
-                    <td>Placeholder for image!</td>
+                    <td>
+                        <img src="${player.imageUrl}" alt="${player.playerName}-image"/>
+                    </td>
                 </c:forEach>
             </tr>
             <tr>
