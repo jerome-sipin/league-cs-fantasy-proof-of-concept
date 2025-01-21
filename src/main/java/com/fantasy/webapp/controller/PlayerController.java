@@ -51,6 +51,21 @@ public class PlayerController {
         return response;
     }
 
+    @GetMapping("/player/create")
+    public ModelAndView create() {
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("player/create");
+
+        // TODO - likely need to add object for current existing teams to put into a dropdown in the page
+        // Get all  teams
+        List<RealTeam> teams = realTeamDAO.findAll();
+        log.debug(teams.toString());
+        response.addObject("teamsKey", teams);
+
+        return response;
+    }
+
 
 
 }

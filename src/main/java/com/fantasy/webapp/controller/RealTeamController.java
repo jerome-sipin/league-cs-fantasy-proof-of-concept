@@ -6,6 +6,7 @@ import com.fantasy.webapp.database.entity.Player;
 import com.fantasy.webapp.database.entity.RealTeam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,14 @@ public class RealTeamController {
         return response;
     }
 
-//    @PostMapping("real_team/create")
-//    public ModelAndView
+    @PreAuthorize("hasAuthority('Admin')")
+    @GetMapping("real_team/create")
+    public ModelAndView createRealTeam(){
+        ModelAndView response = new ModelAndView();
+
+        response.setViewName("real_team/create");
+
+        return response;
+    }
 
 }
