@@ -8,16 +8,8 @@
     </div>
 </section>
 
-<!-- TODO - Each TODO is its own section -->
-
-<!-- TODO - Have a form over all of these items down to the submit button. -->
-
-<!-- TODO - A text form for the team name.-->
 <section class="bg-light1 pt-5 pb-5">
 
-
-    <!-- TODO - Number showing remaining budget. Prob controlled with Javascript. -->
-    <!-- TODO - Underneath is a table that shows current lineup. Buttons underneath each that says "remove from lineup" -->
     <!-- Red buttons indicate you can remove from team -->
 
     <div class="container">
@@ -36,7 +28,9 @@
             <!-- TODO - Ask Eric about this. This doesn't seem efficient. -->
             <tr>
                 <c:forEach var="player" items="${currentTeamPlayersKey}">
-                    <td>Placeholder for image</td>
+                    <td>
+                        <img src="${player.imageUrl}" alt="${player.playerName}-image"/>
+                    </td>
                 </c:forEach>
             </tr>
             <tr>
@@ -94,7 +88,9 @@ and underneath, a button with their price. This buttons adds the player to the t
                 <tr>
                     <c:forEach var="player" items="${playersKey}">
                         <c:if test="${player.teamActualId == team.id}">
-                            <td>Placeholder for image!</td>
+                            <td>
+                                <img src="${player.imageUrl}" alt="${player.playerName}-image"/>
+                            </td>
                         </c:if>
                     </c:forEach>
                 </tr>
@@ -122,12 +118,5 @@ and underneath, a button with their price. This buttons adds the player to the t
     </section>
 </c:forEach>
 
-<script>
-
-    // TODO
-    // https://stackoverflow.com/questions/46587302/spring-boot-delete-database-entry-after-clicking-button
-    // Code from this stack overflow thread was used to allow the controller to delete the record from the database.
-
-</script>
 
 <jsp:include page="../include/footer.jsp"/>

@@ -28,8 +28,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <!-- TODO!!!! CHANGE HREF TO ACTUAL LINKS!!!! ALL OF THESE ARE CUSTOMER/CREATE BECAUSE THIS
-                         TODO!!!! IS COPY PASTED FROM CLASSWORK EXAMPLE-->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/index">Home</a>
                     </li>

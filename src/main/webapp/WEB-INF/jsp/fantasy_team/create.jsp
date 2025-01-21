@@ -8,11 +8,6 @@
     </div>
 </section>
 
-<!-- TODO - Each TODO is its own section -->
-
-<!-- TODO - Have a form over all of these items down to the submit button. -->
-
-<!-- TODO - A text form for the team name.-->
 <section class="bg-light1 pt-5 pb-5">
     <div class="container">
         <form action="/fantasy_team/createSubmit" method="post">

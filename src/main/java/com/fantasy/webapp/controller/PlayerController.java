@@ -27,7 +27,6 @@ public class PlayerController {
     // TODO - sortPlayersByCost method in the DAO. Like, I want to see a table of all players
     //  below the search bar before the user has even typed anything in.
     //  this could probably be done just by removing the JSTL if statement.
-    //  ??? why is it returning search = null???
     // Note - The second parameter in .addObject() MUST match the id and names of the form search box in the jsp
     // That's why it was returning null.
     @GetMapping("/player/search")

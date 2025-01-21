@@ -24,10 +24,6 @@ public class FantasyTeam {
     @ToString.Exclude
     private List<FantasyPlayer> players; // players that are in this fantasy team
 
-    // TODO -  Could the solution to displaying the username in team search
-    //  be to create a OneToOne?
-    //@OneToOne
-
     @Column(name = "user_id")
     private Integer userId;
 

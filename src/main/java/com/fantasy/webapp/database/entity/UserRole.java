@@ -24,6 +24,4 @@ public class UserRole {
     @Column(name = "user_id")
     private Integer userId;
 
-    // TODO! Whenever security is implemented, we need to onetomany userroles and users. Or maybe
-    // TODO! refer more closely to the in-class example. I don't think Eric had to do that.
 }

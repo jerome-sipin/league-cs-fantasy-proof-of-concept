@@ -24,8 +24,6 @@ public class Player {
     @ToString.Exclude
     private List<FantasyPlayer> teams; // fantasy teams that this player is in
 
-
-
     @Column(name = "player_name")
     private String playerName;
 
@@ -37,5 +35,8 @@ public class Player {
 
     @Column(name = "cost")
     private Integer cost;
+
+    @Column(name = "img_url")
+    private String imageUrl;
 
 }

@@ -44,8 +44,6 @@ public class RealTeamController {
             }
             response.addObject("teamsKey", teams);
         }
-        // TODO - How do I do this with SL4J, again???
-        System.out.println(response);
         return response;
     }
 
