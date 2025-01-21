@@ -236,7 +236,7 @@ public class FantasyTeamController {
                 players.add(fp.getPlayer());
             }
 
-            if ( players.contains(player)){
+            if ( players.contains(player) ){
                 log.debug("Error - player already in team");
                 response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
             } else {
@@ -279,14 +279,26 @@ public class FantasyTeamController {
         return response;
     }
 
-    @PostMapping("/fantasy_team/dropPlayer")
-    public ModelAndView dropPlayer(@RequestParam Integer playerId) {
+    @PostMapping("/fantasy_team/dropPlayer/{playerId}")
+    public ModelAndView dropPlayer(@PathVariable Integer playerId) {
         ModelAndView response = new ModelAndView();
-        response.setViewName("fantasy_team/dropPlayer");
 
-        // refer to what we did for addPlayer. Do the same thing but with drop player.
+        // For future reference
+        // https://stackoverflow.com/questions/25821579/transactionrequiredexception-executing-an-update-delete-query
+        // helped solve this. at least when deleting, @Transactional annotation needed in DAO
 
-        // TODO - probably need to make a deleteBy method in the DAO.
+        // Get current user's team
+        User currentUser = authenticatedUserService.loadCurrentUser();
+        FantasyTeam currentTeam = fantasyTeamDAO.findByUserId(currentUser.getId());
+
+        // Add requested player cost back into team budget
+        Player player = playerDAO.findById(playerId);
+        currentTeam.setBudget(currentTeam.getBudget() + player.getCost());
+
+        // Drop requested player from team
+        fantasyPlayerDAO.dropPlayer(currentTeam.getId(), playerId);
+
+        response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
 
         return response;
     }
