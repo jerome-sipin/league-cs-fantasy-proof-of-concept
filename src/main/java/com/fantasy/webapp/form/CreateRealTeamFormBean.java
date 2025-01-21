@@ -1,5 +1,6 @@
 package com.fantasy.webapp.form;
 
+import com.fantasy.webapp.validation.RealTeamNameUnique;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class CreateRealTeamFormBean {
 
-    // @TeamNameUnique
+    @RealTeamNameUnique
     @NotEmpty
     private String teamName;
 

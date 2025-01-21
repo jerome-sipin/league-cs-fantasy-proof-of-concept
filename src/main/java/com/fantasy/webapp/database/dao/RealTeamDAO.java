@@ -1,6 +1,7 @@
 package com.fantasy.webapp.database.dao;
 
 import com.fantasy.webapp.database.entity.RealTeam;
+import com.fantasy.webapp.database.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,4 +18,6 @@ public interface RealTeamDAO extends JpaRepository<RealTeam, Long> {
     @Query("select rt from RealTeam  rt")
     List<RealTeam> findAllTeams();
 
+    @Query("select rt from RealTeam rt where rt.teamName = :realTeamName")
+    RealTeam findByTeamNameExact(String realTeamName);
 }

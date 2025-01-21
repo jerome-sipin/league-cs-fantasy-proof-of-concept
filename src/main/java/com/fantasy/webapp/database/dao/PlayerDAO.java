@@ -44,4 +44,7 @@ public interface PlayerDAO extends JpaRepository<Player, Long> {
                 "where team_name = :teamName", nativeQuery = true)
     List<Map<String,Object>> findPlayersByTeamName(String teamName);
 
+    @Query(value = "select p from Player p where p.playerName = :playerName")
+    Player findPlayerByNameExact(String playerName);
+
 }
