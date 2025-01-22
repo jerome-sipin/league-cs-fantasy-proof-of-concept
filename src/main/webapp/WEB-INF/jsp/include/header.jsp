@@ -2,6 +2,13 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<style>
+.navbar-brand img{
+    width:30px;
+    height:30px;
+}
+</style>
+
 <html>
 <head>
     <title>Title</title>
@@ -22,7 +29,9 @@
 <section>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/index">
+                <img src="../../../pub/images/vtlh_navbar.png" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
