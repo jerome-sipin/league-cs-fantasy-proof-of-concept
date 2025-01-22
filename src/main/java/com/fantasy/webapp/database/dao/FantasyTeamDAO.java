@@ -42,4 +42,9 @@ public interface FantasyTeamDAO extends JpaRepository<FantasyTeam, Long> {
     // this fantasy game like, halfway through the season. Why would they get points based on performances of players
     // that have already happened?
 
+    @Query(value = "select sum(points) from players p " +
+            "inner join players_fantasy pf on pf.player_id = p.id " +
+            "where pf.fantasy_team_id = :teamId", nativeQuery = true)
+    Integer getTeamTotalPoints(Integer teamId);
+
 }

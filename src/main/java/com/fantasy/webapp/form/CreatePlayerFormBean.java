@@ -17,6 +17,8 @@ public class CreatePlayerFormBean {
 
     private Integer cost;
 
+    private Integer points;
+
     @NotEmpty
     private String playerImageUrl;
 

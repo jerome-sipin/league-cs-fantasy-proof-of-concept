@@ -4,15 +4,16 @@
 }
 
 .bg-light1 {
-    background-color: #e3e6e8;
+    background-color: #4C5A69;
 }
 
 .bg-light2 {
-    background-color: #c5cdd1;
+    background-color: #36424E;
 }
 
 .bg-footer {
-    background-color: #F8F9FA;
+    background-color: #5B6E82;
+    box-shadow: 0 50vh 0 50vh #5B6E82;
 }
 
 .flex-parent {
@@ -26,4 +27,18 @@ img {
     width: 200px;
     height: auto;
 }
+
+html {
+    min-height: 100vh;
+    display: flex;
+}
+
+body {
+    flex: 1;
+    min-height: 100vh;
+    color:#F8F9FA;
+}
+ th, td {
+     color: #F8F9FA;
+ }
 

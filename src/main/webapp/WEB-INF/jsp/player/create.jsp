@@ -55,6 +55,13 @@
             </div>
 
             <div class="mt-3 row justify-content-center">
+                <label for="points" class="col-sm-2 col-form-label">Player Points</label>
+                <div class="col-sm-10 col-lg-6">
+                    <input type="text" class="form-control" id="points" name="points" value="">
+                </div>
+            </div>
+
+            <div class="mt-3 row justify-content-center">
                 <label for="playerImageUrl" class="col-sm-2 col-form-label">Player Image URL</label>
                 <div class="col-sm-10 col-lg-6">
                     <input type="text" class="form-control" id="playerImageUrl" name="playerImageUrl" value="">

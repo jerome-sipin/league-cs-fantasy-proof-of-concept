@@ -166,6 +166,7 @@ public class FantasyTeamController {
 
             Integer budget = currentFantasyTeam.getBudget();
             String teamName = currentFantasyTeam.getTeamName();
+            Integer teamId = currentFantasyTeam.getId();
 
             // Retrieve data for all real teams and their players.
             List<RealTeam> realTeams = realTeamDAO.findAllTeams();
@@ -176,6 +177,7 @@ public class FantasyTeamController {
                 players.addAll(roster);
             }
 
+            response.addObject("teamId", teamId);
             response.addObject("teamName", teamName);
             response.addObject("currentTeamPlayersKey", playerInformation);
             response.addObject("budget", budget);
@@ -271,6 +273,7 @@ public class FantasyTeamController {
 
                         // Finally, update team budget and redirect to view screen.
                         currentTeam.setBudget(currentTeam.getBudget() - player.getCost());
+                        currentTeam.setPoints(fantasyTeamDAO.getTeamTotalPoints(currentTeam.getId()));
                         fantasyTeamDAO.save(currentTeam);
                         response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
 

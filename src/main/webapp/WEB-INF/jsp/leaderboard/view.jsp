@@ -9,6 +9,16 @@
     #topTeamsDiv {
         display: none;
     }
+
+    .btn-primary {
+        padding: 2rem;
+        width: 200px;
+        height: 160px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
 <section class="bg-light2 pt-5 pb-5">
@@ -21,13 +31,11 @@
 <section class="bg-light2">
     <div class="container">
         <div class="row pt-5 pb-5 justify-content-center">
-            <div class="col-6">
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary btn-lg" id="topPlayers" name="topPlayers">View Top Players</button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary btn-lg" id="topTeams" name="topTeams">View Top Fantasy Teams</button>
+            <div class="col-6 align-items-center text-center">
+                <div class="row">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="topPlayers" name="topPlayers">View Top Players</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="topTeams" name="topTeams">View Top Fantasy Teams</button>
                     </div>
                 </div>
             </div>
@@ -44,8 +52,8 @@
 <section class="bg-light2 pb-5 justify-content-center">
     <div class="container" id="topPlayersDiv">
         <div class="row pb-5 justify-content-center">
-            <div class="col-6">
-                <table class="table mt-5">
+            <div class="col-6 align-items-center text-center">
+                <table class="table mt-5 text-center">
                     <tr>
                         <th>Player Name</th>
                         <th>Team</th>
@@ -69,8 +77,8 @@
 <section class="bg-light2 pb-5 justify-content-center">
     <div class="container" id="topTeamsDiv">
         <div class="row pb-5 justify-content-center">
-            <div class="col-6">
-                <table class="table mt-5">
+            <div class="col-6 align-items-center text-center">
+                <table class="table mt-5 text-center">
                     <tr>
                         <th>User</th>
                         <th>Team Name</th>

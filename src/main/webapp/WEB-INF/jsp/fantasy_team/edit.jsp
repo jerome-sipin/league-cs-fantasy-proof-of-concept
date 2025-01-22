@@ -103,11 +103,8 @@
                 <div class="row justify-content-center">
                     <div class="col-6">
                         <div class="row justify-content-center">
-                            <div class="col-6">
-                                <button id="submit" name="submit" class="btn btn-primary" value="1">Save Changes</button>
-                            </div>
-                            <div class="col-6">
-                                <a href="" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+                            <div class="btn-group">
+                                <a href="/fantasy_team/view/${teamId}" id="cancel" name="cancel" class="btn btn-primary">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -172,9 +169,6 @@ and underneath, a button with their price. This buttons adds the player to the t
     </section>
 </c:forEach>
 
-<script>
-    // Script - make this element more opaque
-</script>
 
 
 <jsp:include page="../include/footer.jsp"/>
