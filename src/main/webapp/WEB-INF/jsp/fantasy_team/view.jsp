@@ -9,7 +9,6 @@
         <h3 class="text-center">${teamInformationKey.points} Points</h3>
     </div>
 </section>
-
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
         <table class="table mt-5 text-center">

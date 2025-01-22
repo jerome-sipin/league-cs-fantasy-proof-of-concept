@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section class="bg-light1">
+<section class="bg-light2">
     <div class="container">
         <div class="row pt-5 justify-content-center">
 
@@ -56,7 +56,7 @@
     </div>
 </section>
 
-<section class="bg-light1 pt-5 pb-5">
+<section class="bg-light2 pt-5 pb-5">
 
     <!-- Red buttons indicate you can remove from team -->
     <div class="container">
