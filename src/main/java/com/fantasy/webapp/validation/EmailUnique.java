@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EmailUnique {
 
-    String message() default "{UserEmailUnique}";
+    String message() default "{Email must be unique!}";
 
     Class<?>[] groups() default {};
 

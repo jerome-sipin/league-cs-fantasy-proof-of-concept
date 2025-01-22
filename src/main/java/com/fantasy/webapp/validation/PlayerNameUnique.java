@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PlayerNameUnique {
 
-    String message() default "{PlayerNameUnique}";
+    String message() default "{Player name must be unique!}";
 
     Class<?>[] groups() default {};
 

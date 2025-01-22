@@ -10,6 +10,12 @@
     </div>
 </section>
 
+<style>
+    .form_input_error {
+        color:red;
+    }
+</style>
+
 <section class="bg-light2 pt-5 pb-5">
     <div class="container">
         <form action="/login/registrationSubmit" method="post">

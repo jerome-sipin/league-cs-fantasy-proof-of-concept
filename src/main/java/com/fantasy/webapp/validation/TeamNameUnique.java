@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TeamNameUnique {
 
-    String message() default "{TeamNameUnique}";
+    String message() default "{Team name must be unique!}";
 
     Class<?>[] groups() default {};
 

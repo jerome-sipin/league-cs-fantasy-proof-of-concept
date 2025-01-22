@@ -8,6 +8,12 @@
     </div>
 </section>
 
+<style>
+    .form_input_error {
+        color:red;
+    }
+</style>
+
 <section class="bg-light1 pt-5 pb-5">
     <div class="container">
         <form action="/fantasy_team/createSubmit" method="post">
