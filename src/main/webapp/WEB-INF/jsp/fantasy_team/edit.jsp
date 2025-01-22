@@ -152,10 +152,17 @@ and underneath, a button with their price. This buttons adds the player to the t
                     <c:forEach var="player" items="${playersKey}">
                         <c:if test="${player.teamActualId == team.id}">
                             <td>
-                                <form action="/fantasy_team/addPlayer/${player.id}" method="post">
-                                    <button id="${player.id}"
-                                            type="submit" class="btn btn-success">$${player.cost}</button>
-                                </form>
+                                <c:choose>
+                                    <c:when test="${player.cost > budget}">
+                                        <button id="${player.id}" class="btn btn-secondary">$${player.cost}</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form action="/fantasy_team/addPlayer/${player.id}" method="post">
+                                            <button id="${player.id}"
+                                                    type="submit" class="btn btn-success">$${player.cost}</button>
+                                        </form>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                         </c:if>
                     </c:forEach>
@@ -164,6 +171,10 @@ and underneath, a button with their price. This buttons adds the player to the t
         </div>
     </section>
 </c:forEach>
+
+<script>
+    // Script - make this element more opaque
+</script>
 
 
 <jsp:include page="../include/footer.jsp"/>

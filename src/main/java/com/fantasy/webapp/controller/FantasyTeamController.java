@@ -203,10 +203,10 @@ public class FantasyTeamController {
         // https://www.baeldung.com/spring-web-flash-attributes
         // pass objects to fantasy_team/edit from this view
 
-        Boolean playerExists = false;
-        Boolean tooExpensive = false;
-        Boolean tooMany = false;
-        Boolean fullRoster = false;
+        Boolean playerExists;
+        Boolean tooExpensive;
+        Boolean tooMany;
+        Boolean fullRoster;
 
         // check if user has 5 players already. if yes, redirect back to edit page; otherwise,
         // return some kind of error
@@ -235,11 +235,7 @@ public class FantasyTeamController {
                 response.setViewName("fantasy_team/edit");
                 response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
                 attributes.addFlashAttribute("playerExists", playerExists);
-                // TODO
-                // return response;
-                // can remove else now
-                // to display error - either look up bootstrap alert box or add object to the jsp
-                // that will then display some html telling the user the error
+
             } else {
 
                 // Check to see if this player is within budget
@@ -249,6 +245,7 @@ public class FantasyTeamController {
                     response.setViewName("fantasy_team/edit");
                     response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
                     attributes.addFlashAttribute("tooExpensive", tooExpensive);
+
                 } else {
                     // Add player into database for this team.
                     FantasyPlayer fantasyPlayer = new FantasyPlayer();
@@ -269,7 +266,7 @@ public class FantasyTeamController {
                         response.setViewName("fantasy_team/edit");
                         response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
                         attributes.addFlashAttribute("tooMany", tooMany);
-                        
+
                     } else {
 
                         // Finally, update team budget and redirect to view screen.
