@@ -21,7 +21,7 @@ ______
 
 **Screenshots**
 ____
-![[Pasted image 20250122150426.png]]
+![View User Team](/Screenshots/view_user_team.png)
 
 
 **Lessons Learned**
