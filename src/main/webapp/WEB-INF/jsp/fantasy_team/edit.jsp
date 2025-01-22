@@ -8,10 +8,57 @@
     </div>
 </section>
 
+<section class="bg-light1">
+    <div class="container">
+        <div class="row pt-5 justify-content-center">
+
+            <c:if test="${playerExists == true}">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-6">
+                        <div class="alert alert-danger" role="alert">
+                            This player is already in your team!
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${fullRoster == true}">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-6">
+                        <div class="alert alert-danger" role="alert">
+                            Your roster is already full!
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${tooExpensive == true}">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-6">
+                        <div class="alert alert-danger" role="alert">
+                            This player is too expensive for your current budget!
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${tooMany == true}">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-lg-6">
+                        <div class="alert alert-danger" role="alert">
+                            Only 2 players from the same real team may be in your fantasy team!
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+        </div>
+    </div>
+</section>
+
 <section class="bg-light1 pt-5 pb-5">
 
     <!-- Red buttons indicate you can remove from team -->
-
     <div class="container">
         <h3 class="text-center">Remaining Budget: $${budget}</h3>
     </div>

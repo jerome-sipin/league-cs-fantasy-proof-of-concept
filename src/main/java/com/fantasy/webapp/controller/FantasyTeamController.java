@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -188,9 +189,24 @@ public class FantasyTeamController {
     }
 
     @PostMapping("/fantasy_team/addPlayer/{playerId}")
-    public ModelAndView addPlayer( @PathVariable Integer playerId) {
+    public ModelAndView addPlayer( @PathVariable Integer playerId, RedirectAttributes attributes) {
         ModelAndView response = new ModelAndView();
 
+        // TODO - Rewrite this function if needed. It should be fine for HLTV-style logic in team drafting,
+        //  but what if we ever want to do like, irl football style drafting. That would require a lot more
+        //  logic that would make these nested if else statements hard to follow.
+        //  Do return response in the same "cell" as the set view.
+
+        // todo - Okay might have to ask Eric about this. The solution here is clearly to use RedirectAttributes,
+        //  yet I can't get it to appear in the edit jsp.
+        // https://stackoverflow.com/questions/12633916/spring-how-to-pass-a-message-between-views
+        // https://www.baeldung.com/spring-web-flash-attributes
+        // pass objects to fantasy_team/edit from this view
+
+        Boolean playerExists = false;
+        Boolean tooExpensive = false;
+        Boolean tooMany = false;
+        Boolean fullRoster = false;
 
         // check if user has 5 players already. if yes, redirect back to edit page; otherwise,
         // return some kind of error
@@ -215,7 +231,10 @@ public class FantasyTeamController {
 
             if ( players.contains(player) ){
                 log.debug("Error - player already in team");
+                playerExists = true;
+                response.setViewName("fantasy_team/edit");
                 response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+                attributes.addFlashAttribute("playerExists", playerExists);
                 // TODO
                 // return response;
                 // can remove else now
@@ -226,7 +245,10 @@ public class FantasyTeamController {
                 // Check to see if this player is within budget
                 if ( player.getCost() > currentTeam.getBudget() ){
                     log.debug("Error - player too expensive");
+                    tooExpensive = true;
+                    response.setViewName("fantasy_team/edit");
                     response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+                    attributes.addFlashAttribute("tooExpensive", tooExpensive);
                 } else {
                     // Add player into database for this team.
                     FantasyPlayer fantasyPlayer = new FantasyPlayer();
@@ -243,19 +265,28 @@ public class FantasyTeamController {
                         // delete this record from the database
                         fantasyPlayerDAO.delete(fantasyPlayer);
                         log.debug("Error - too many players from the same real team");
+                        tooMany = true;
+                        response.setViewName("fantasy_team/edit");
                         response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
+                        attributes.addFlashAttribute("tooMany", tooMany);
+                        
                     } else {
+
                         // Finally, update team budget and redirect to view screen.
                         currentTeam.setBudget(currentTeam.getBudget() - player.getCost());
                         fantasyTeamDAO.save(currentTeam);
                         response.setViewName("redirect:/fantasy_team/view/" + currentTeam.getId());
+
                     }
                 }
             }
         } else {
             // TODO - Need to add some sort of error, though... Maybe ask Eric about it tomorrow.
+            fullRoster = true;
+            response.setViewName("fantasy_team/edit");
             response.setViewName("redirect:/fantasy_team/edit/" + currentTeam.getId());
-            log.debug("Error here");
+            attributes.addFlashAttribute("fullRoster", fullRoster);
+            log.debug("Error - you already have a full roster");
         }
 
         return response;
