@@ -1,4 +1,4 @@
-**Introduction**
+### **Introduction**
 _____
 This project is a proof-of-concept for a web application for playing fantasy esports (similar to fantasy football/basketball) for the professional scene for the video games "Counter-Strike 2" and "League of Legends". For simplicity's sake, this version features only Counter-Strike teams and players, as the scene is more international compared to League's regional circuits. 
 
@@ -6,8 +6,7 @@ So far, basic logic for creating fantasy teams and adding players has been imple
 
 This project was made with no commercial intent and simply as a study / starting point into creating a private web application to be used amongst myself and my friends to play fantasy League and Counter-Strike. 
 
-
-**Technologies Used**
+### **Technologies Used**
 ____
 **Frontend** - HTML/JSP | Bootstrap | CSS | JavaScript 
 
@@ -17,7 +16,7 @@ ____
 
 **Build / Deployment** - Tomcat | Maven
 
-**Features**
+### **Features**
 ______
 **Login / Registration** 
 - Users are able to register. There are validations to ensure that emails and usernames are unique. 
@@ -37,28 +36,51 @@ ______
 - Users may only have 1 fantasy team as of this version. By clicking the "Your Team" button on the navigation bar, you are taken to the screen to create a fantasy team or to view your fantasy team. 
 - When creating a fantasy team, there is validation on whether your team name is unique. 
 - Currently, adding/removing players to a fantasy team is similar to a shopping cart of an e-commerce platform. When you add a player into the team, you are redirected to the view screen for your team. 
+- Helpful error messages when adding a player that cannot be added to your fantasy team (restrictions are based on HLTV fantasy restrictions)
 
 **Create Real Team / Players**
 - The Admin may create new entries for real teams and players. There is validation on the uniqueness of player names and team names. Images are URLs from Counter-Strike news website/forum HLTV. 
 
-
-**Screenshots**
+### **Screenshots**
 ____
+Viewing your own fantasy team
 ![View User Team](/Screenshots/view_user_team.png)
 
+Empty fantasy team
+![empty fantasy team](/Screenshots/empty_fantasy_team.png)
 
-**Future Plans**
+UI for selecting players
+![select players](/Screenshots/edit_team.png)
+
+Error in adding player to team
+![edit team error](/Screenshots/error.png)
+
+Create player
+![create player](/Screenshots/create_player.png)
+
+Create real team
+![create real team](/Screenshots/create_real_team.png)
+
+Create fantasy team
+![create fantasy team](/Screenshots/create_fantasy_team.png)
+
+### **Future Plans**
 ____
 - Further fantasy team editing logic
 	- Ability to rename team
 	- Ability to edit team lineup without changing views/refreshing the page
+	- Disable buttons to add players that do not meet team criteria (partially implemented for cost)
 - Search bar for searching through all tables. 
 - Currently there is no way to change a user's authorities inside the application. Future versions should have a functionality for the Admin to be able to edit user roles. 
-- Real team and players should be updated by an external API, rather than manually by the Admin through create forms. 
+- Link to external API.
+	- Create / update real teams and players. 
+		- More detailed player attributes (stats - K/D/A, creep score, headshot ratio, etc...)
+	- Retrieve upcoming matches / recent match results.
+- Logic for adding points to players based on their match performance/stats.
+- Implement different fantasy "leagues", based on tournament (e.g., IEM Katowice, Worlds, LCS etc...)
+- Implement team drafting (like NFL draft, for example; who will get #1 pick to get Faker during Worlds??) 
 
-
-
-**Lessons Learned**
+### **Lessons Learned**
 ____
 
 

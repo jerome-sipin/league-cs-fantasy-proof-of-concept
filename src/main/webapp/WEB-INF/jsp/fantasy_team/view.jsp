@@ -43,7 +43,7 @@
                     <div class="row justify-content-center">
                         <div class="col-6">
                             <div class="row justify-content-center">
-                                <div class="col-6">
+                                <div class="btn-group">
                                     <a href="/fantasy_team/edit/${teamInformationKey.id}"  class="btn btn-primary">Edit Team</a>
                                 </div>
                             </div>

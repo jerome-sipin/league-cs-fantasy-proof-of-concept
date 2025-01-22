@@ -308,6 +308,9 @@ public class FantasyTeamController {
         Player player = playerDAO.findById(playerId);
         currentTeam.setBudget(currentTeam.getBudget() + player.getCost());
 
+        // Subtract player points from team total
+        currentTeam.setPoints(currentTeam.getPoints() + player.getPoints());
+
         // Drop requested player from team
         fantasyPlayerDAO.dropPlayer(currentTeam.getId(), playerId);
 

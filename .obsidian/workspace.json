@@ -164,12 +164,21 @@
   },
   "active": "76c6b30c2078204a",
   "lastOpenFiles": [
-    "Screenshots/view_user_team.png",
-    "Pasted image 20250122150426.png",
-    "Screenshots/Pasted image 20250122150426.png",
+    "Screenshots/create_fantasy_team.png",
+    "Screenshots/create_real_team.png",
+    "Screenshots/create_player.png",
+    "Screenshots/Pasted image 20250122160008.png",
+    "Screenshots/Pasted image 20250122155918.png",
+    "Screenshots/Pasted image 20250122155903.png",
+    "Pasted image 20250122160008.png",
+    "Pasted image 20250122155918.png",
+    "Pasted image 20250122155903.png",
+    "Screenshots/edit_team.png",
+    "Screenshots/error.png",
+    "src/main/webapp/WEB-INF/jsp/fantasy_team/view.jsp~",
+    "target/classes/com/fantasy/webapp/controller/FantasyTeamController.class",
     "Screenshots",
     "New folder",
-    "README.md",
-    "src/main/webapp/WEB-INF/jsp/fantasy_team/view.jsp~"
+    "README.md"
   ]
 }
