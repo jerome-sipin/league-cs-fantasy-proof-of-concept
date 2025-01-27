@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 206.5
+    "width": 206.5,
+    "collapsed": true
   },
   "right": {
     "id": "3f622e42727cb333",
@@ -164,6 +165,20 @@
   },
   "active": "76c6b30c2078204a",
   "lastOpenFiles": [
+    "Pasted image 20250123105227.png",
+    "src/main/webapp/pub/videos/yung_stew.mp4",
+    "src/main/webapp/pub/videos/caedrel_hes_alive.mp4",
+    "src/main/webapp/pub/videos",
+    "src/main/webapp/WEB-INF/jsp/index.jsp~",
+    "src/main/webapp/pub/videos/CSGO Boston Major 2018 final Stewie2k b Hold.mp4",
+    "src/main/webapp/pub/videos/ELEAGUE Major 2018 Grand Finals - Stewie2k takes it to OT.mp4",
+    "src/main/webapp/pub/videos/CAEDREL REACTS TO ENDING OF WORLD FINALS - T1 VS BLG.mp4",
+    "src/main/webapp/pub/New folder",
+    "target/classes/com/fantasy/webapp/controller/IndexController.class",
+    "src/main/java/com/fantasy/webapp/controller/IndexController.java~",
+    "Screenshots/leaderboard.png",
+    "leaderboard.png",
+    "Pasted image 20250122160338.png",
     "Screenshots/create_fantasy_team.png",
     "Screenshots/create_real_team.png",
     "Screenshots/create_player.png",
@@ -171,14 +186,6 @@
     "Screenshots/Pasted image 20250122155918.png",
     "Screenshots/Pasted image 20250122155903.png",
     "Pasted image 20250122160008.png",
-    "Pasted image 20250122155918.png",
-    "Pasted image 20250122155903.png",
-    "Screenshots/edit_team.png",
-    "Screenshots/error.png",
-    "src/main/webapp/WEB-INF/jsp/fantasy_team/view.jsp~",
-    "target/classes/com/fantasy/webapp/controller/FantasyTeamController.class",
-    "Screenshots",
-    "New folder",
     "README.md"
   ]
 }
