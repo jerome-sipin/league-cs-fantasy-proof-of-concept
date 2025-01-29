@@ -47,7 +47,7 @@ ______
 ### **Screenshots**
 ____
 ERD
-![[Pasted image 20250123105227.png]]
+![ERD](/Screenshots/ERD.png)
 
 Viewing your own fantasy team
 ![View User Team](/Screenshots/view_user_team.png)
@@ -95,12 +95,8 @@ ____
 - Start thinking / planning early! 
 	- Web applications have a lot of thought put into them. 
 - Someone has probably already had an issue similar to yours online. 
-- Keep persisting (like Jakarta Persistence???) 
-- Write down comments
+- Keep persisting. 
+- Write down comments - they help get your ideas down so you can 
 
-
-
-IMPORTANT TO DO - 
-HOW TO REVERSE A PUSH / COMMIT??? SOURCETREE DOESN'T LIKE HOW I TRIED TO PUSH A VIDEO. 
 
 
